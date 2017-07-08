@@ -57,6 +57,16 @@ http.createServer(function(req, res) {
       res.write(js);
       res.end();
     });
+  } else if (req.url === '/arrow.png') {
+    fs.readFile('./arrow.png', function(err, js) {
+      if (err) {
+        throw err;
+      }
+
+      res.writeHead(200, { 'Content-Type': 'image/png' });
+      res.write(js);
+      res.end();
+    });
   }
   // console.log('test3');
 }).listen(8080);
