@@ -4,24 +4,24 @@ body{
 }
 
 .profile{
-    
+
     background-color: #222327;
     color: #FF720F;
     box-sizing: border-box;
-    
+
     /*  width & height  */
     width: 25%;
     height: 8%;
-    
+
     /*  padding  */
     padding-right: 5px;
     padding-left: 5px;
-    
+
     /*  margin  */
     margin: 5px;,
     margin-right: 0px;
-    
-    
+
+
     position: fixed;
     display: table;
 }
@@ -38,33 +38,33 @@ body{
         }
 
 .chat_header{
-    
+
     background-color: #222327;
     color: whitesmoke;
     box-sizing: border-box;
-    
+
     /*  widht & height  */
     height: 8%;
     left: 25%;
     width: 71%;
-    
+
     /*  padding  */
     padding-right: 5px;
     padding-left: 20px;
-    
+
     /*  margin  */
      margin: 5px;
     margin-right: 105px;
     margin-left: 10px;
-    
+
     /* Borders: */
     border-left: solid;
     border-color: #666666;
     border-width: 3px;
-    
+
     position: fixed;
     display: table;
-    
+
 }
 
         .chat_header h1{
@@ -81,22 +81,22 @@ body{
         }
 
 .rooms{
-    
+
     background-color: #222327;
     color: antiquewhite;
     box-sizing: border-box;
     /*  width & height  */
     height: 87%;
     width: 25%;
-    
+
     /*  positioning:  */
     position: absolute;
     top: 10%;
-    
+
     /*  padding  */
     padding-right: 5px;
     padding-left: 5px;
-    
+
     /*  margin  */
     margin: 5px;,
     margin-right: 0px;
@@ -104,7 +104,7 @@ body{
 }
 
 .active_chat {
-    
+
     background-color: #8A8A8A;
     color: white;
     background-image: url(background.jpg);
@@ -114,29 +114,29 @@ body{
     height: 87%;
     left: 25%;
     width: 71%;
-    
+
     /*  positioning:  */
     position: absolute;
     top: 10%;
-    
+
     /*  padding  */
     /*padding-right: 5px;
     padding-left: 20px;
-    
+
     /*  margin  */
     margin: 5px;
     margin-right: 105px;
     margin-left: 10px;
-    
+
     /* Borders: */
     border-left: solid;
     border-color: #666666;
     border-width: 3px;
-    
+
 }
 
 .text {
-    
+
     /*  margin  */
     margin: 5px;
     margin-right: 0.5px;
@@ -159,7 +159,7 @@ body{
 
         .text input{
 
-            background-color:#666666; 
+            background-color:#666666;
             box-sizing: border-box;
             width: 80%;
             height: 70%;
@@ -181,6 +181,26 @@ body{
         .text input[type=text]:focus {
             border: 2px solid #FF720F;
         }
+         .text button{
+
+                    color: white;
+                    background-color:#666666;
+                    background-image: url(arrow.png);
+                    background-repeat: no-repeat;
+                    background-size: 30px;
+                    background-position: center;
+                    position: absolute;
+                    height: 70%;
+                    width: 4%;
+                    top: 15%;
+                    right: 5%;
+                    border:none;
+                }
+        .text input[type=text]:focus {
+            border: 2px solid #FF720F;
+        }
+
+Add Comment
 
 
 .chats {
