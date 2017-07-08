@@ -27,4 +27,5 @@ msgbox.style.color = "white";
 msgbox.innerHTML = message;
 
 document.getElementById("messagebody").appendChild(msgbox);
-}*/
+}
+*/
