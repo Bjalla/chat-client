@@ -27,8 +27,8 @@ http.createServer(function(req, res) {
       res.write(css);
       res.end();
     });
-  } else if (req.url === '/index.js') {
-    fs.readFile('./index.js', function(err, js) {
+  } else if (req.url === '/jquery.js') {
+    fs.readFile('./jquery.js', function(err, js) {
       if (err) {
         throw err;
       }
