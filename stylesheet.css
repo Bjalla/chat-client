@@ -135,6 +135,17 @@ body{
 
 }
 
+.messagebody{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background-color: #666666;
+    color: white;
+    width: auto%;
+    padding: 5px;
+}
+
+
 .text {
 
     /*  margin  */
@@ -199,7 +210,6 @@ body{
         .text input[type=text]:focus {
             border: 2px solid #FF720F;
         }
-
 
 .chats {
   width: 100%;
