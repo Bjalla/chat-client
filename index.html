@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <head><link rel="stylesheet" href="stylesheet.css"></head>
-        <title>
+  <head><link rel="stylesheet" href="stylesheet.css"></head>
+  <script language="javascript" type="text/javascript" src="index.js"></script>
+  <title>
             Chat
         </title>
             <body>
@@ -9,7 +10,7 @@
                 <div class="chat_header"><h1 class="h1">Active chat</h1></div>
                 <div class="rooms">
                     <div class="chats">
-                      
+
                       <ul>
                         <li><a href="#">Cathleen</a></li>
                         <li><a href="#">Laura</a></li>
@@ -20,9 +21,9 @@
                     </div>
                 </div>
                 <div class="active_chat">
-                
-                <div class="text"><input type="text" name="lname"></div>
+
+                <div class="text"><input id="input" type="text" onkeydown="enter()" name="lname"></div>
                 </div>
-                
+
             </body>
     </html>
