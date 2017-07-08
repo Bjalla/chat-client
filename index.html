@@ -11,24 +11,29 @@
         </title>
             <body>
                 <div class="profile"><h1>Welcome</h1></div>
-                <div class="chat_header"><h1 class="h1">Active chat</h1></div>
+                <div class="chat_header"><h1 class="h1" id="chatname">Active chat</h1></div>
                 <div class="rooms">
                     <div class="chats">
 
-                      <ul>
-                        <li><a href="#">Cathleen</a></li>
+                      <ul id="chats">
+                        <!--<li><a href="#">Cathleen</a></li>
                         <li><a href="#">Laura</a></li>
                         <li><a href="#">Tobi</a></li>
                         <li><a href="#">David</a></li>
-                        <li><a href="#">Lennart</a></li>
+                        <li><a href="#">Lennart</a></li>-->
                       </ul>
                     </div>
                 </div>
                 <div class="active_chat">
                 <div id="messageid">
-                <div class="messagebody" id="messagebody">Message:</div>
+                    <ul id="messages"></ul>
+                    
+<!--
+                <div class="messagebody" id="messagebody">Message: hey</div>
+                <div class="messagebody" id="messagebody2">Message: hey2</div>
+-->
                 </div>
-                <div class="text"><input id="input" type="text" onkeydown="enter()" name="lname"><button></button></div>
+                <div class="text"><input id="chatBar" type="text" name="lname"><button id="button"></button></div>
                 </div>
 
             </body>

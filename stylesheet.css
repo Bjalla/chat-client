@@ -9,6 +9,35 @@ body{
     height: 20px;
 }
 
+#messageid {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+#messages {
+    list-style: none;
+}
+
+#messages li {
+    border: 1px solid black;
+    max-width: 30%;
+    background-color: #666;
+    color: black;
+    width: 30%;
+    margin-right: 68%;
+    float: left;
+    word-wrap: break-word;
+    padding: 3px 10px;
+    margin-bottom: 10px; 
+}
+
+.ownMessage {
+    margin-left: 68%;
+    margin-right: 0;
+    background-color: lightgreen!important;
+}
+
+
 .profile{
     
     background-color: #222327;
