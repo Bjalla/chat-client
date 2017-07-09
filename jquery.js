@@ -1,9 +1,34 @@
-var activeChat = ''; 
-var userName = 'amilabell3'; 
+var activeChat = '';
+var userName = 'amilabell3';
+var activeUser = 0;
 
 $(document).ready(function() {
-     
-     
+
+    function checkActiveUser() {
+      var displayname = document.getElementById('displayname').value;
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      $( "#login" ).dialog({ autoOpen: false });
+      if (activeUser === 0) {
+        $( "#login" ).dialog( "open" );
+        document.getElementById('submit').disabled = 'disabled';
+        if (displayname != '' && username != '' && password != '') {
+          document.getElementById('submit').disabled = '';
+        }
+
+        document.getElementById('submit').addEventListener("onclick", function() {
+          if (username === 'dhbw' && password === 'dhbw-pw') {
+            $( '#login' ).dialog( 'close' );
+            alert('Log-in successful. Your display name is: ' + displayname);
+          });
+          } else {
+            alert('Username or password not correct. Please enter the correct credentials.');
+        }
+      }
+    }
+
+
     // Anfrage auf url mit type und header(für authorization)
      $.ajax(({
           type: "GET",
@@ -13,7 +38,7 @@ $(document).ready(function() {
           headers: {
             "Authorization": "Basic " + btoa("dhbw" + ":" + 'dhbw-pw')
           }
-         
+
          //verarbeitung der response daten
     })).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
          if(data.length > 0) {
@@ -23,36 +48,36 @@ $(document).ready(function() {
              // no rooms yet .. maybe show button to create a new one?
          }
          $.each(data, function(i) {
-            $('#chats').append($("<li>").append($("<a>").text(data[i]).attr('href','javascript:changeActiveRoom("' + data[i] + '")')));         
+            $('#chats').append($("<li>").append($("<a>").text(data[i]).attr('href','javascript:changeActiveRoom("' + data[i] + '")')));
          });
     });
-     
+
      // show active chat
-    
+
     $("#button").click(function(){
-        sendMessage();    
+        sendMessage();
     });
             // emojis:
             //var message = emojifying(message);
-         
+
             /*$newMsg.attr("id", "newMsg" + counter++);
             $newMsg.html(message);
             $(".messagebody").append($newMsg);
             $("#input").val("");
                     });
             */
-    
-          
+
+
       /*var counter = 0;
-      
-     
+
+
      $("#button").click(function(){
-            
+
             message = $('#input').val();
             // emojis:
             var message = emojifying(message);
-         
-         
+
+
             var $newMsg = $("<div></div>");
             $newMsg.attr("id", "newMsg" + counter++);
             $newMsg.html(message);
@@ -63,21 +88,21 @@ $(document).ready(function() {
 
    var counter2 = 0
 */
-   
-$('#chatBar').keypress(function(e) {
-    if(e.which == 13) {
-       sendMessage();
-    }
-});
-     
+
+  $('#chatBar').keypress(function(e) {
+      if(e.which == 13) {
+         sendMessage();
+      }
+  });
+
 });
 
 function changeActiveRoom(name) {
     activeChat = name;
     $('#chatname').text("Active Chat: " + activeChat)
-    
+
     $('#messages').empty();
-    
+
     $.ajax(({
           type: "GET",
           url: "http://liebknecht.danielrutz.com:3000/api/chats/" + name,
@@ -86,18 +111,18 @@ function changeActiveRoom(name) {
           headers: {
             "Authorization": "Basic " + btoa("dhbw" + ":" + 'dhbw-pw')
           }
-         
+
          //verarbeitung der response daten
     })).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
          $.each(data, function(i) {
              if(data[i].user == userName) {
-                $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": " + data[i].message))).addClass("ownMessage"));         
+                $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": " + data[i].message))).addClass("ownMessage"));
              } else {
-                $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": " + data[i].message))));         
+                $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": " + data[i].message))));
              }
          });
     });
-    
+
 }
 
 function sendMessage() {
@@ -110,7 +135,7 @@ function sendMessage() {
             "Authorization": "Basic " + btoa("dhbw" + ":" + 'dhbw-pw')
           },
          contentType: 'application/json',
-         data: JSON.stringify({  "roomId": activeChat, 'user': userName, 'message': message}),
+         data: JSON.stringify({ "roomId": activeChat, 'user': userName, 'message': message }),
          async: false
     })).then(function(data) {
             changeActiveRoom(activeChat);
@@ -118,7 +143,7 @@ function sendMessage() {
 }
 
 function emojifying(message){
-         
+
     message = message.replace(/\:\(/g, '<img alt="sad face" class="emoji" src="sad_face.png">');
 
     message = message.replace(/:O/g, '<img alt="shocked face" class="emoji" src="shocked_face.png">');
