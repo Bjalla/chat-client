@@ -128,7 +128,7 @@ function changeActiveRoom(name) {
     })).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
          $.each(data, function(i) {
              //differenciation between messages from the user and from others (for left and right aligne)
-             if(data[i].user == userName) {
+             if(data[i].user == displayname) {
 
 
                 $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": " + data[i].message))).addClass("ownMessage"));
@@ -150,12 +150,13 @@ function sendMessage() {
             "Authorization": "Basic " + btoa("dhbw" + ":" + 'dhbw-pw')
           },
          contentType: 'application/json',
-         data: JSON.stringify({ "roomId": activeChat, 'user': userName, 'message': message }),
+         data: JSON.stringify({ "roomId": activeChat, 'user': displayname, 'message': message }),
          async: false
     })).then(function(data) {
             changeActiveRoom(activeChat);
     });
-}
+    document.getElementById('chatBar').value = '';
+  }
 
 function emojifying(message){
 
