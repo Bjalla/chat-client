@@ -41,12 +41,13 @@ $(document).ready(function() {
         displayname =  $('#displayname').val();
         userName =  $('#username').val();
         password =  $('#password').val();
-
+        $( "div").css({opacity: 1});
         getChats();
 
         if (statusCode === 200) {
           activeUser = displayname;
           $( '#login' ).hide();
+            
           } else {
             alert('Username or password not correct. Please enter the correct credentials.');
         }
@@ -139,12 +140,12 @@ function changeActiveRoom(name) {
     })).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
          $.each(data, function(i) {
              //differenciation between messages from the user and from others (for left and right aligne)
-             if(data[i].user == userName) {
+             if(data[i].user == displayname) {
 
 
-                $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": " + data[i].message))).addClass("ownMessage"));
+                $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": <br/>" + data[i].message))).addClass("ownMessage"));
              } else {
-                $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": " + data[i].message))));
+                $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + "  : <br/> " + data[i].message))));
              }
          });
     });
