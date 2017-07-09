@@ -1,32 +1,48 @@
 var activeChat = '';
 var userName = '';
 var activeUser = 0;
-
+var displayname = '';
+var userName = '';
+var password = '';
 $(document).ready(function() {
 
-    function checkActiveUser() {
-      var displayname = document.getElementById('displayname').value;
-      var userName = document.getElementById('username').value;
-      var password = document.getElementById('password').value;
-
-      $( "#login" ).dialog({ autoOpen: false });
-      if (activeUser === 0) {
-        $( "#login" ).dialog( "open" );
-        document.getElementById('submit').disabled = 'disabled';
+    $("#login").hide();
+    
+    if (activeUser === 0){
+        $("#login").show();
+        $("#submit").prop("disabled", true)
+    }
+    
+    $("#login").change(function() {
+        checkActiveUser();
+    })
+    $("#submit").click(function(){
+        checkCredentials()
+    })
+    
+    function checkActiveUser(){
+        var displayname =  $('#displayname').val();
+        var userName =  $('#username').val();
+        var password =  $('#password').val();
         if (displayname != '' && userName != '' && password != '') {
-          document.getElementById('submit').disabled = '';
-        }
-
-        document.getElementById('submit').addEventListener("onclick", function() {
-          if (userName === 'dhbw' && password === 'dhbw-pw') {
-            $( '#login' ).dialog( 'close' );
+            $("#submit").prop("disabled", false);
+        }   
+    }
+    
+    function checkCredentials(){
+         
+        displayname =  $('#displayname').val();
+        userName =  $('#username').val();
+        password =  $('#password').val();
+        if (userName == 'dhbw' && password == 'dhbw-pw') {
+            $( '#login' ).hide();
             alert('Log-in successful. Your display name is: ' + displayname);
-          });
+          
           } else {
             alert('Username or password not correct. Please enter the correct credentials.');
         }
-      }
     }
+    
 
 
     // Anfrage auf url mit type und header(für authorization)
