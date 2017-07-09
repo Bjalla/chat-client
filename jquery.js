@@ -47,11 +47,12 @@ $(document).ready(function() {
         if (statusCode === 200) {
           activeUser = displayname;
           $( '#login' ).hide();
-            
+          changeActiveRoom();
+
           } else {
             alert('Username or password not correct. Please enter the correct credentials.');
         }
-      }
+    }
 
     userc =$.ajax(({
         type: "GET",
@@ -62,7 +63,12 @@ $(document).ready(function() {
             "Authorization": "Basic " + btoa("dhbw" + ":" + 'dhbw-pw')
           }
     }))
-    
+
+    function reload() {
+      changeActiveRoom(activeChat);
+    }
+
+    setInterval(reload, 5000);
 
     // Anfrage auf url mit type und header(für authorization)
     function getChats() {
@@ -149,8 +155,11 @@ function changeActiveRoom(name) {
              }
          });
     });
-
-}
+    $(document).ready(function(){
+      $('#messageid').animate({
+      scrollTop: $('#messageid').get(0).scrollHeight}, 1);
+    });
+  }
 
 function sendMessage() {
      message = $('#chatBar').val();
@@ -167,7 +176,10 @@ function sendMessage() {
     })).then(function(data) {
             changeActiveRoom(activeChat);
     });
-    $("#messageid").animate({ scrollTop: $("#messageid")[0].scrollHeight}, 1000);
+    $(document).ready(function(){
+      $('#messageid').animate({
+      scrollTop: $('#messageid').get(0).scrollHeight}, 1);
+    });
     document.getElementById('chatBar').value = '';
   }
 
