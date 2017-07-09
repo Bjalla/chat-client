@@ -1,24 +1,24 @@
 var activeChat = '';
-var userName = 'amilabell3';
+var userName = '';
 var activeUser = 0;
 
 $(document).ready(function() {
 
     function checkActiveUser() {
       var displayname = document.getElementById('displayname').value;
-      var username = document.getElementById('username').value;
+      var userName = document.getElementById('username').value;
       var password = document.getElementById('password').value;
 
       $( "#login" ).dialog({ autoOpen: false });
       if (activeUser === 0) {
         $( "#login" ).dialog( "open" );
         document.getElementById('submit').disabled = 'disabled';
-        if (displayname != '' && username != '' && password != '') {
+        if (displayname != '' && userName != '' && password != '') {
           document.getElementById('submit').disabled = '';
         }
 
         document.getElementById('submit').addEventListener("onclick", function() {
-          if (username === 'dhbw' && password === 'dhbw-pw') {
+          if (userName === 'dhbw' && password === 'dhbw-pw') {
             $( '#login' ).dialog( 'close' );
             alert('Log-in successful. Your display name is: ' + displayname);
           });
