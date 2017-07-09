@@ -36,7 +36,7 @@ body{
 .ownMessage {
     margin-left: 65%;
     margin-right: 0;
-    background-color: lightgreen!important;
+    background-color:#FF862C!important;
 }
 
 
@@ -191,7 +191,9 @@ body{
     height:90%;
 }
 
-
+#messageid li{
+    color: white;
+}
 .text {
 
     /*  margin  */
@@ -214,22 +216,61 @@ body{
     border-color: #666666;*/
 }
 
-        .text input{
+.text #searchBar{
+    background-color:#666666;
+    width: 14%;
+    left: 2%;
+    height: 70%;
+    top: 15%;
+    border: none;
+    position: absolute;
+    box-sizing: border-box;
+    background-color:#666666;
+                    background-image: url(images/search.png);
+                    background-repeat: no-repeat;
+                    background-size: 24px;
+                    background-position: 5px;
+    color: white;
+    padding-left: 33px;
+}
+
+.text #searchrev{
+    background-color:#666666;
+    width: 4%;
+    left: 16%;
+    height: 70%;
+    top: 15%;
+    border: none;
+    border-left: solid;
+    border-left-width: 1px;
+    border-color: #222327;
+    position: absolute;
+    box-sizing: border-box;
+    background-color:#666666;
+                    background-image: url(images/cross.png);
+                    background-repeat: no-repeat;
+                    background-size: 22px;
+                    background-position: 10px;
+    color: white;
+    padding-left: 33px;
+}
+
+        .text #chatBar{
 
             background-color:#666666;
             box-sizing: border-box;
-            width: 80%;
+            width: 70%;
             height: 70%;
            /* border: 1px solid white;*/
             border: none;
             position: absolute;
             top: 15%;
-            left: 10%;
+            left: 23%;
             background-image: url(images/chat.png);
             background-repeat: no-repeat;
             background-size: 30px;
             background-position: 5px;
-
+            color: white;
             padding-left: 45px;
             vertical-align: middle;
 

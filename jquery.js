@@ -4,6 +4,7 @@ var activeUser = 0;
 var displayname = '';
 var userName = '';
 var password = '';
+var searchval = 0;
 var colors = ["e1f7d5", "ffbdbd", "c9c9ff", "f1cbff", "ffb3ba", "ffdfba", "ffffba", "baffc9", "bae1ff", "fea3aa", "f8b88b", "faf884", "baed91", "b2cefe", "f2a2e8", "7979ff", "86bcff", "8adcff", "1ffef3", "4bfe78", "f9bb00", "ff800d", "ff9331", "c47557", "c48484"];
 var statusCode = '';
 
@@ -125,7 +126,35 @@ $(document).ready(function() {
       }
   });
 
-});
+    $('#searchBar').keypress(function(e) {
+      if(e.which == 13) {
+         search();
+      }
+  });
+
+    $('#searchrev').click(function(e){
+        reversesearch();
+    })
+
+function search(){
+
+    console.log('going again...');
+            var searchval = $('#searchBar').val().toLowerCase();
+            $("#messages li").each(function() {
+            var s = $(this).text().toLowerCase();
+            $(this).closest('#messages li')[ s.indexOf(searchval) !== -1 ? 'show' : 'hide' ]();
+            });
+                };
+
+            document.getElementById('searchBar').value = '';
+    });
+
+function reversesearch(){
+    $("#messages li").show()
+
+}
+
+
 
 function changeActiveRoom(name) {
     activeChat = name;
@@ -160,6 +189,9 @@ function changeActiveRoom(name) {
       scrollTop: $('#messageid').get(0).scrollHeight}, 1);
     });
   }
+
+
+
 
 function sendMessage() {
      message = $('#chatBar').val();
