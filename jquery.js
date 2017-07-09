@@ -140,7 +140,7 @@ $(document).ready(function() {
           //verarbeitung der response daten
     })).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
          $.each(data, function(i) {
-            $('#userlist').append($("<li>").append($("<a>").text(data[i])));
+            $('#userlist').append($("<li>").append($("<a>").text(data[i]).attr('href','javascript:changeActiveRoom("' + data[i] + '")')));
 
          });
     });
@@ -216,7 +216,7 @@ function changeActiveRoom(name) {
              if(data[i].user == displayname) {
 
 
-                $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": <br/>" + data[i].message))).addClass("ownMessage"));
+                $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": <br/>" + data[i].message))).addClass("ownMessage").css('background-color', 'red'));
              } else {
                 $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + "  : <br/> " + data[i].message))));
              }
@@ -248,7 +248,7 @@ function changeActiveRoom(name) {
               if(data[i].user == displayname) {
                  $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": <br/>" + data[i].message))).addClass("ownMessage"));
               } else {
-                 $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + "  : <br/> " + data[i].message))));
+                                        $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + "  : <br/> " + data[i].message).attr('color', 'red'))));
               }
             }
           }
