@@ -5,9 +5,10 @@ var displayname = '';
 var userName = '';
 var password = '';
 $(document).ready(function() {
+    console.log('going again...');
 
     $("#login").hide();
-    
+
     if (activeUser === 0){
         $("#login").show();
         $( "div:not(.login)").fadeTo( "slow" , 0.5, function() {
@@ -15,40 +16,53 @@ $(document).ready(function() {
         });
         $("#submit").prop("disabled", true)
     }
-    
+
     $("#login").change(function() {
         checkActiveUser();
     })
     $("#submit").click(function(){
         checkCredentials()
     })
-    
+
     function checkActiveUser(){
         var displayname =  $('#displayname').val();
         var userName =  $('#username').val();
         var password =  $('#password').val();
         if (displayname != '' && userName != '' && password != '') {
             $("#submit").prop("disabled", false);
-        }   
+        }
     }
-    
+
+    function getExpDate() {
+      var date = new Date();
+      var datetime = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " @ "
+                + (date.getHours()+0) + ":"
+                + date.getMinutes() + ":"
+                + (date.getSeconds()+30);
+
+      return datetime // .toUTCString();
+    }
+
     function checkCredentials(){
-         
+
         displayname =  $('#displayname').val();
         userName =  $('#username').val();
         password =  $('#password').val();
+        console.log("test1");
         if (userName == 'dhbw' && password == 'dhbw-pw') {
+          console.log("test1");
+          document.cookie = "displayname=" + displayname + "; expires=" + getExpDate();
+          activeUser = displayname;
+
+          console.log(decodeURIComponent(document.cookie));
             $( '#login' ).hide();
-            alert('Log-in successful. Your display name is: ' + displayname);
-          
+            console.log("test1");
+
+
+
           } else {
             alert('Username or password not correct. Please enter the correct credentials.');
         }
-    }
-    
-    
-    function assignColor(user){
-        
     }
 
 
@@ -113,7 +127,7 @@ function changeActiveRoom(name) {
              //differenciation between messages from the user and from others (for left and right aligne)
              if(data[i].user == userName) {
 
-        
+
                 $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": " + data[i].message))).addClass("ownMessage"));
              } else {
                 $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": " + data[i].message))));
