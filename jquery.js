@@ -4,6 +4,8 @@ var activeUser = 0;
 var displayname = '';
 var userName = '';
 var password = '';
+var colors = ["e1f7d5", "ffbdbd", "c9c9ff", "f1cbff", "ffb3ba", "ffdfba", "ffffba", "baffc9", "bae1ff", "fea3aa", "f8b88b", "faf884", "baed91", "b2cefe", "f2a2e8", "7979ff", "86bcff", "8adcff", "1ffef3", "4bfe78", "f9bb00", "ff800d", "ff9331", "c47557", "c48484"];
+
 $(document).ready(function() {
     console.log('going again...');
 
@@ -65,6 +67,16 @@ $(document).ready(function() {
         }
     }
 
+    userc =$.ajax(({
+        type: "GET",
+        url: "http://liebknecht.danielrutz.com:3000/api/chats/Lobby/users/",
+        dataType: 'json',
+        async: false,
+        headers: {
+            "Authorization": "Basic " + btoa("dhbw" + ":" + 'dhbw-pw')
+          }
+    }))
+    
 
     // Anfrage auf url mit type und header(für authorization)
      $.ajax(({
