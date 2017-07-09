@@ -4,6 +4,7 @@ var activeUser = 0;
 var displayname = '';
 var userName = '';
 var password = '';
+var colors = ["e1f7d5", "ffbdbd", "c9c9ff", "f1cbff", "ffb3ba", "ffdfba", "ffffba", "baffc9", "bae1ff", "fea3aa", "f8b88b", "faf884", "baed91", "b2cefe", "f2a2e8", "7979ff", "86bcff", "8adcff", "1ffef3", "4bfe78", "f9bb00", "ff800d", "ff9331", "c47557", "c48484"];
 var statusCode = '';
 
 $(document).ready(function() {
@@ -40,17 +41,28 @@ $(document).ready(function() {
         displayname =  $('#displayname').val();
         userName =  $('#username').val();
         password =  $('#password').val();
-
+        $( "div").css({opacity: 1});
         getChats();
 
         if (statusCode === 200) {
           activeUser = displayname;
           $( '#login' ).hide();
+            
           } else {
             alert('Username or password not correct. Please enter the correct credentials.');
         }
       }
 
+    userc =$.ajax(({
+        type: "GET",
+        url: "http://liebknecht.danielrutz.com:3000/api/chats/Lobby/users/",
+        dataType: 'json',
+        async: false,
+        headers: {
+            "Authorization": "Basic " + btoa("dhbw" + ":" + 'dhbw-pw')
+          }
+    }))
+    
 
     // Anfrage auf url mit type und header(für authorization)
     function getChats() {
@@ -131,9 +143,9 @@ function changeActiveRoom(name) {
              if(data[i].user == displayname) {
 
 
-                $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": " + data[i].message))).addClass("ownMessage"));
+                $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": <br/>" + data[i].message))).addClass("ownMessage"));
              } else {
-                $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": " + data[i].message))));
+                $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + "  : <br/> " + data[i].message))));
              }
          });
     });
