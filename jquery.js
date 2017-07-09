@@ -162,12 +162,14 @@ function sendMessage() {
             "Authorization": "Basic " + btoa("dhbw" + ":" + 'dhbw-pw')
           },
          contentType: 'application/json',
-         data: JSON.stringify({ "roomId": activeChat, 'user': userName, 'message': message }),
+         data: JSON.stringify({ "roomId": activeChat, 'user': displayname, 'message': message }),
          async: false
     })).then(function(data) {
             changeActiveRoom(activeChat);
     });
-}
+    $("#messageid").animate({ scrollTop: $("#messageid")[0].scrollHeight}, 1000);
+    document.getElementById('chatBar').value = '';
+  }
 
 function emojifying(message){
 
