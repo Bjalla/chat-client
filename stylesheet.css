@@ -313,3 +313,77 @@ body{
                 background: #f6f6f6;
                 color: #FF862C;
             }
+
+
+#login{
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 25%;
+    left: 25%;
+    margin-top: -50px;
+    margin-left: -50px;
+    z-index: 10;
+    background-color: #222327; 
+    padding-top: 1.5%;
+    display: table;
+    
+}
+
+#login input{
+    top: 25%;
+    margin-top: -50px;
+    margin: 20px;
+    margin-left: 25%;
+    background-color: #666;
+    color: white;
+    border: none;
+    padding: 7px;
+}
+
+#login #displayname{
+    width: 45%;
+    margin-top: 2px;
+    background-image: url(user.png);
+            background-repeat: no-repeat;
+            background-size: 25px;
+            background-position: 5px;
+    padding-left: 5%;
+}
+
+#login  #username{
+    width: 45%;
+    margin-top: 2px;
+    background-image: url(user.png);
+            background-repeat: no-repeat;
+            background-size: 25px;
+            background-position: 5px;
+    padding-left: 5%;
+}
+
+#login #password{
+    
+    width: 45%;
+    margin-top: 2px;
+    background-image: url(password.png);
+            background-repeat: no-repeat;
+            background-size: 25px;
+            background-position: 5px;
+    padding-left: 5%;
+    
+}
+
+#login input[type=submit]{
+    width: 20%;
+    margin-left: 40%;
+    background-color: #FF862C
+}
+
+#login h1{
+            color: #FF862C;
+            padding-left: 40%;
+            font-family: Arial ,sans-serif;
+            font-size: 1.8em;
+            font-variant: small-caps;
+            width: 20%;
+}

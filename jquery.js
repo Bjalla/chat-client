@@ -72,7 +72,6 @@ $('#chatBar').keypress(function(e) {
      
 });
 
-//used to change and reload the chat
 function changeActiveRoom(name) {
     activeChat = name;
     $('#chatname').text("Active Chat: " + activeChat)
@@ -91,9 +90,9 @@ function changeActiveRoom(name) {
          //verarbeitung der response daten
     })).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
          $.each(data, function(i) {
-             //differenciation between messages from the user and from others (for left and right aligned messages)
+             //differenciation between messages from the user and from others (for left and right aligne)
              if(data[i].user == userName) {
-                $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": " + data[i].message))).addClass("ownMessage
+                $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": " + data[i].message))).addClass("ownMessage"))
                                                                                                                                          
              } else {
                 $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": " + data[i].message))));         
@@ -103,7 +102,6 @@ function changeActiveRoom(name) {
     
 }
 
-//Snding message                
 function sendMessage() {
      message = $('#chatBar').val();
      $.ajax(({

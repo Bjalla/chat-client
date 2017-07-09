@@ -2,6 +2,7 @@
 <html>
   <head><link rel="stylesheet" href="stylesheet.css">
   <script language="javascript" type="text/javascript" src="index.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="jquery.js"></script>
   <meta charset="utf-8"/>
@@ -35,6 +36,18 @@
                 </div>
                 <div class="text"><input id="chatBar" type="text" name="lname"><button id="button"></button></div>
                 </div>
+                
+                <form id="login">
+                    <h1>Please login:</h1><br>
+                    <input type="text" id="displayname" value="Displayname" onfocus="if (this.value=='Displayname') this.value='';"/>
+                    <br>
+                    <input type="text" id="username" value="Username" onfocus="if (this.value=='Username') this.value='';"/>
+                    <br>
+                    <input type="password" id="password" value="Password" onfocus="if (this.value=='password') this.value='';"/>
+                    <br>
+                    <input type="submit" id="submit">
+                </form>
+
 
             </body>
     </html>
