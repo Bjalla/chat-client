@@ -45,7 +45,7 @@ $(document).ready(function() {
         password =  $('#password').val();
         $( "div").css({opacity: 1});
         getChats();
-
+        getUser();
         if (statusCode === 200) {
           activeUser = displayname;
           $( '#login' ).hide();
@@ -112,6 +112,41 @@ $(document).ready(function() {
     });
   }
 
+    
+    function getUser() {
+      $.ajax(({
+          type: "GET",
+          url: "http://liebknecht.danielrutz.com:3000/api/chats/Lobby/users",
+          statusCode: {
+            200: function (response) {
+              statusCode = 200;
+            },
+            401: function (response) {
+              statusCode = 400;
+            },
+            403: function (response) {
+              statusCode = 403;
+            },
+            405: function (response) {
+              statusCode = 405;
+            }
+          },
+          dataType: 'json',
+          async: false,
+          headers: {
+            "Authorization": "Basic " + btoa(userName + ":" + password)
+          }
+
+          //verarbeitung der response daten
+    })).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
+         $.each(data, function(i) {
+            $('#userlist').append($("<li>").append($("<a>").text(data[i])));
+
+         });
+    });
+  }
+    
+    
      // show active chat
 
     $("#button").click(function(){

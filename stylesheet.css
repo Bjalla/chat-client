@@ -14,6 +14,14 @@ body{
     overflow-y: scroll;
 }
 
+#userlist{
+    overflow-y: auto;
+}
+
+#userlist li:last-child {
+              border-bottom: none;
+            }
+
 #messages {
     list-style: none;
 }
@@ -137,6 +145,20 @@ body{
     /*  margin  */
     margin: 5px;,
     margin-right: 0px;
+    overflow-y: auto;
+}
+
+.rooms hr{
+    height: 5px;
+	background: url(images/line.png) repeat-x 0 0;
+    border: none;
+}
+.rooms h1{
+    color: #FF862C;
+            font-family: Arial ,sans-serif;
+            font-size: 1.5em;
+            font-variant: small-caps;
+            width: 20%;
 }
 
 .rooms ul{
@@ -293,6 +315,10 @@ body{
                     top: 15%;
                     right: 5%;
                     border:none;
+             
+    border-left: solid;
+    border-left-width: 1px;
+    border-color: #222327;
                 }
         .text input[type=text]:focus {
             border: 2px solid #FF720F;
@@ -331,7 +357,7 @@ body{
             }
 
             .chats li:last-child {
-              border-bottom: 1px solid #666666;
+              border-bottom: none;
             }
 
             .chats li a {
