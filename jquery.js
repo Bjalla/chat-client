@@ -10,6 +10,9 @@ $(document).ready(function() {
     
     if (activeUser === 0){
         $("#login").show();
+        $( "div:not(.login)").fadeTo( "slow" , 0.5, function() {
+            // Animation complete.
+        });
         $("#submit").prop("disabled", true)
     }
     
@@ -43,6 +46,10 @@ $(document).ready(function() {
         }
     }
     
+    
+    function assignColor(user){
+        
+    }
 
 
     // Anfrage auf url mit type und header(für authorization)
@@ -73,37 +80,9 @@ $(document).ready(function() {
     $("#button").click(function(){
         sendMessage();
     });
-            // emojis:
-            //var message = emojifying(message);
-
-            /*$newMsg.attr("id", "newMsg" + counter++);
-            $newMsg.html(message);
-            $(".messagebody").append($newMsg);
-            $("#input").val("");
-                    });
-            */
-
-
-      /*var counter = 0;
-
-
-     $("#button").click(function(){
-
-            message = $('#input').val();
-            // emojis:
-            var message = emojifying(message);
-
-
-            var $newMsg = $("<div></div>");
-            $newMsg.attr("id", "newMsg" + counter++);
-            $newMsg.html(message);
-            $(".messagebody").append($newMsg);
-            $("#input").val("");
-                    });
-
 
    var counter2 = 0
-*/
+
 
   $('#chatBar').keypress(function(e) {
       if(e.which == 13) {
