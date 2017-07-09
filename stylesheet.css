@@ -152,7 +152,7 @@ body{
 
     background-color: #8A8A8A;
     color: white;
-    background-image: url(background.jpg);
+    background-image: url(images/background.jpg);
     background-size: 100%, 100%;
     box-sizing: border-box;
     /*  widht & height  */
@@ -224,7 +224,7 @@ body{
             position: absolute;
             top: 15%;
             left: 10%;
-            background-image: url(chat.png);
+            background-image: url(images/chat.png);
             background-repeat: no-repeat;
             background-size: 30px;
             background-position: 5px;
@@ -241,7 +241,7 @@ body{
 
                     color: white;
                     background-color:#666666;
-                    background-image: url(arrow.png);
+                    background-image: url(images/arrow.png);
                     background-repeat: no-repeat;
                     background-size: 30px;
                     background-position: center;
@@ -344,7 +344,7 @@ body{
 #login #displayname{
     width: 45%;
     margin-top: 2px;
-    background-image: url(user.png);
+    background-image: url(images/user.png);
             background-repeat: no-repeat;
             background-size: 25px;
             background-position: 5px;
@@ -354,7 +354,7 @@ body{
 #login  #username{
     width: 45%;
     margin-top: 2px;
-    background-image: url(user.png);
+    background-image: url(images/user.png);
             background-repeat: no-repeat;
             background-size: 25px;
             background-position: 5px;
@@ -365,7 +365,7 @@ body{
 
     width: 45%;
     margin-top: 2px;
-    background-image: url(password.png);
+    background-image: url(images/password.png);
             background-repeat: no-repeat;
             background-size: 25px;
             background-position: 5px;

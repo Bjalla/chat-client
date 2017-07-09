@@ -4,6 +4,8 @@ var activeUser = 0;
 var displayname = '';
 var userName = '';
 var password = '';
+var statusCode = '';
+
 $(document).ready(function() {
     console.log('going again...');
 
@@ -30,50 +32,49 @@ $(document).ready(function() {
         }
     }
 
-    function getExpDate() {
-      var date = new Date();
-      var datetime = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " @ "
-                + (date.getHours()+0) + ":"
-                + date.getMinutes() + ":"
-                + (date.getSeconds()+30);
-
-      return datetime // .toUTCString();
-    }
 
     function checkCredentials(){
-
         displayname =  $('#displayname').val();
         userName =  $('#username').val();
         password =  $('#password').val();
-        console.log("test1");
-        if (userName == 'dhbw' && password == 'dhbw-pw') {
-          console.log("test1");
-          document.cookie = "displayname=" + displayname + "; expires=" + getExpDate();
+
+        getChats();
+
+        if (statusCode === 200) {
           activeUser = displayname;
-
-          console.log(decodeURIComponent(document.cookie));
-            $( '#login' ).hide();
-            console.log("test1");
-
-
-
+          $( '#login' ).hide();
           } else {
             alert('Username or password not correct. Please enter the correct credentials.');
         }
-    }
+      }
 
 
     // Anfrage auf url mit type und header(für authorization)
-     $.ajax(({
+    function getChats() {
+      $.ajax(({
           type: "GET",
           url: "http://liebknecht.danielrutz.com:3000/api/chats/",
+          statusCode: {
+            200: function (response) {
+              statusCode = 200;
+            },
+            401: function (response) {
+              statusCode = 400;
+            },
+            403: function (response) {
+              statusCode = 403;
+            },
+            405: function (response) {
+              statusCode = 405;
+            }
+          },
           dataType: 'json',
           async: false,
           headers: {
-            "Authorization": "Basic " + btoa("dhbw" + ":" + 'dhbw-pw')
+            "Authorization": "Basic " + btoa(userName + ":" + password)
           }
 
-         //verarbeitung der response daten
+          //verarbeitung der response daten
     })).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
          if(data.length > 0) {
              changeActiveRoom(data[0]);
@@ -83,8 +84,10 @@ $(document).ready(function() {
          }
          $.each(data, function(i) {
             $('#chats').append($("<li>").append($("<a>").text(data[i]).attr('href','javascript:changeActiveRoom("' + data[i] + '")')));
+
          });
     });
+  }
 
      // show active chat
 
@@ -181,25 +184,27 @@ function sendMessage() {
 
 function emojifying(message){
 
-    message = message.replace(/\:\(/g, '<img alt="sad face" class="emoji" src="sad_face.png">');
+    message = message.replace(/\:\(/g, '<img alt="sad face" class="emoji" src="images/sad_face.png">');
 
-    message = message.replace(/:O/g, '<img alt="shocked face" class="emoji" src="shocked_face.png">');
+    message = message.replace(/:O/g, '<img alt="shocked face" class="emoji" src="images/shocked_face.png">');
 
-    message = message.replace(/:o/g, '<img alt="shocked face" class="emoji" src="shocked_face.png">');
+    message = message.replace(/:o/g, '<img alt="shocked face" class="emoji" src="images/shocked_face.png">');
 
-    message = message.replace(/O:\)/g, '<img alt="angel face" class="emoji" src="angel_face.png">');
+    message = message.replace(/O:\)/g, '<img alt="angel face" class="emoji" src="images/angel_face.png">');
 
-    message = message.replace(/o:\)/g, '<img alt="angel face" class="emoji" src="angel_face.png">');
+    message = message.replace(/o:\)/g, '<img alt="angel face" class="emoji" src="images/angel_face.png">');
 
-    message = message.replace(/:P/g, '<img alt="angel face" class="emoji" src="tongue_face.png">');
+    message = message.replace(/:P/g, '<img alt="angel face" class="emoji" src="images/tongue_face.png">');
 
-    message = message.replace(/:party:/g, '<img alt="party emoji" class="emoji" src="party_emoji.png">');
+    message = message.replace(/:party:/g, '<img alt="party emoji" class="emoji" src="images/party_emoji.png">');
 
-    message = message.replace(/:unicorn:/g, '<img alt="unicorn emoji" class="emoji" src="unicorn_emoji.png">');
+    message = message.replace(/:unicorn:/g, '<img alt="unicorn emoji" class="emoji" src="images/unicorn_emoji.png">');
 
-    message = message.replace(/:\'D/g, '<img alt="laughing face" class="emoji" src="laughing_face.png">');
+    message = message.replace(/:\'D/g, '<img alt="laughing face" class="emoji" src="images/laughing_face.png">');
 
-    message = message.replace(/:\)/g, '<img alt="happy face" class="emoji" src="happy_face.png">');
+    message = message.replace(/:\)/g, '<img alt="happy face" class="emoji" src="images/happy_face.png">');
+
+    message = message.replace(/:love:/g, '<img alt="heart_emoji" class="emoji" src="images/heart_emoji.png">');
 
 
  return message;
