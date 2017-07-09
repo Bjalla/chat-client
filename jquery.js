@@ -112,7 +112,7 @@ $(document).ready(function() {
     });
   }
 
-    
+
     function getUser() {
       $.ajax(({
           type: "GET",
@@ -145,8 +145,8 @@ $(document).ready(function() {
          });
     });
   }
-    
-    
+
+
      // show active chat
 
     $("#button").click(function(){
@@ -302,7 +302,7 @@ function emojifying(message){
 
     message = message.replace(/:unicorn:/g, '<img alt="unicorn emoji" class="emoji" src="images/unicorn_emoji.png">');
 
-    message = message.replace(/:\'D/g, '<img alt="laughing face" class="emoji" src="images/laughing_face.png">');
+    message = message.replace(/:\:D/g, '<img alt="laughing face" class="emoji" src="images/laughing_face.png">');
 
     message = message.replace(/:\)/g, '<img alt="happy face" class="emoji" src="images/happy_face.png">');
 
