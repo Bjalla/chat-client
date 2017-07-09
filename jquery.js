@@ -155,6 +155,7 @@ function sendMessage() {
     })).then(function(data) {
             changeActiveRoom(activeChat);
     });
+    $("#messageid").animate({ scrollTop: $("#messageid")[0].scrollHeight}, 1000);
     document.getElementById('chatBar').value = '';
   }
 
