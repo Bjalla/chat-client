@@ -48,11 +48,12 @@ $(document).ready(function() {
         if (statusCode === 200) {
           activeUser = displayname;
           $( '#login' ).hide();
-            
+          changeActiveRoom();
+
           } else {
             alert('Username or password not correct. Please enter the correct credentials.');
         }
-      }
+    }
 
     userc =$.ajax(({
         type: "GET",
@@ -63,7 +64,12 @@ $(document).ready(function() {
             "Authorization": "Basic " + btoa("dhbw" + ":" + 'dhbw-pw')
           }
     }))
-    
+
+    function reload() {
+      changeActiveRoom(activeChat);
+    }
+
+    setInterval(reload, 5000);
 
     // Anfrage auf url mit type und header(für authorization)
     function getChats() {
@@ -154,33 +160,33 @@ $(document).ready(function() {
          sendMessage();
       }
   });
-    
+
     $('#searchBar').keypress(function(e) {
       if(e.which == 13) {
          search();
       }
   });
-    
+
     $('#searchrev').click(function(e){
         reversesearch();
     })
-    
+
 function search(){
-  
-    console.log('going again...');        
+
+    console.log('going again...');
             var searchval = $('#searchBar').val().toLowerCase();
             $("#messages li").each(function() {
             var s = $(this).text().toLowerCase();
             $(this).closest('#messages li')[ s.indexOf(searchval) !== -1 ? 'show' : 'hide' ]();
             });
                 };
-            
+
             document.getElementById('searchBar').value = '';
     });
 
 function reversesearch(){
     $("#messages li").show()
-    
+
 }
 
 
@@ -213,7 +219,11 @@ function changeActiveRoom(name) {
              }
          });
     });
-}
+    $(document).ready(function(){
+      $('#messageid').animate({
+      scrollTop: $('#messageid').get(0).scrollHeight}, 1);
+    });
+  }
 
 
 
@@ -233,7 +243,10 @@ function sendMessage() {
     })).then(function(data) {
             changeActiveRoom(activeChat);
     });
-    $("#messageid").animate({ scrollTop: $("#messageid")[0].scrollHeight}, 1000);
+    $(document).ready(function(){
+      $('#messageid').animate({
+      scrollTop: $('#messageid').get(0).scrollHeight}, 1);
+    });
     document.getElementById('chatBar').value = '';
   }
 
