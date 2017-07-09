@@ -5,7 +5,7 @@ var displayname = '';
 var userName = '';
 var password = '';
 $(document).ready(function() {
-
+    console.log('going again...');
 
     $("#login").hide();
 
@@ -30,14 +30,32 @@ $(document).ready(function() {
         }
     }
 
+    function getExpDate() {
+      var date = new Date();
+      var datetime = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " @ "
+                + (date.getHours()+0) + ":"
+                + date.getMinutes() + ":"
+                + (date.getSeconds()+30);
+
+      return datetime // .toUTCString();
+    }
+
     function checkCredentials(){
 
         displayname =  $('#displayname').val();
         userName =  $('#username').val();
         password =  $('#password').val();
+        console.log("test1");
         if (userName == 'dhbw' && password == 'dhbw-pw') {
+          console.log("test1");
+          document.cookie = "displayname=" + displayname + "; expires=" + getExpDate();
+          activeUser = displayname;
+
+          console.log(decodeURIComponent(document.cookie));
             $( '#login' ).hide();
-            alert('Log-in successful. Your display name is: ' + displayname);
+            console.log("test1");
+
+
 
           } else {
             alert('Username or password not correct. Please enter the correct credentials.');
