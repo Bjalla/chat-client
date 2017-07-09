@@ -1,4 +1,5 @@
 var activeChat = '';
+var messages;
 var userName = '';
 var activeUser = 0;
 var displayname = '';
@@ -66,7 +67,7 @@ $(document).ready(function() {
     }))
 
     function reload() {
-      changeActiveRoom(activeChat);
+      getNewMessages();
     }
 
     setInterval(reload, 5000);
@@ -168,12 +169,14 @@ function changeActiveRoom(name) {
           dataType: 'json',
           async: false,
           headers: {
-            "Authorization": "Basic " + btoa("dhbw" + ":" + 'dhbw-pw')
+            "Authorization": "Basic " + btoa(userName + ":" + password)
           }
 
          //verarbeitung der response daten
     })).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
+         messages = data;
          $.each(data, function(i) {
+              // messages[i] = data[i];
              //differenciation between messages from the user and from others (for left and right aligne)
              if(data[i].user == displayname) {
 
@@ -191,6 +194,37 @@ function changeActiveRoom(name) {
   }
 
 
+  function getNewMessages() {
+    $.ajax(({
+          type: "GET",
+          url: "http://liebknecht.danielrutz.com:3000/api/chats/" + activeChat,
+          dataType: 'json',
+          async: false,
+          headers: {
+            "Authorization": "Basic " + btoa(userName + ":" + password)
+          }
+
+         //verarbeitung der response daten
+    })).then(function(data) {
+          var prevLength = messages.length;
+          if (data.length > messages.length) {
+            for (var i = messages.length; i < data.length; i++) {
+              messages[i] = data[i];
+              if(data[i].user == displayname) {
+                 $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": <br/>" + data[i].message))).addClass("ownMessage"));
+              } else {
+                 $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + "  : <br/> " + data[i].message))));
+              }
+            }
+          }
+        });
+        $(document).ready(function(){
+          $('#messageid').animate({
+          scrollTop: $('#messageid').get(0).scrollHeight}, 1);
+        });
+    }
+
+
 
 
 function sendMessage() {
@@ -200,7 +234,7 @@ function sendMessage() {
           url: "http://liebknecht.danielrutz.com:3000/api/chats/" + activeChat,
           dataType: 'json',
           headers: {
-            "Authorization": "Basic " + btoa("dhbw" + ":" + 'dhbw-pw')
+            "Authorization": "Basic " + btoa(userName + ":" + password)
           },
          contentType: 'application/json',
          data: JSON.stringify({ "roomId": activeChat, 'user': displayname, 'message': message }),
