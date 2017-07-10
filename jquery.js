@@ -1,12 +1,12 @@
 var activeChat = '';
 var messages;
-var userName = '';
+var user = 0;
 var activeUser = 0;
 var displayname = '';
 var userName = '';
 var password = '';
 var searchval = 0;
-var colors = ["e1f7d5", "ffbdbd", "c9c9ff", "f1cbff", "ffb3ba", "ffdfba", "ffffba", "baffc9", "bae1ff", "fea3aa", "f8b88b", "faf884", "baed91", "b2cefe", "f2a2e8", "7979ff", "86bcff", "8adcff", "1ffef3", "4bfe78", "f9bb00", "ff800d", "ff9331", "c47557", "c48484"];
+var colors = ["#e1f7d5", "#ffbdbd", "#c9c9ff", "#f1cbff", "#ffb3ba", "#ffdfba", "#ffffba", "#baffc9", "#bae1ff", "#fea3aa", "#f8b88b", "#faf884", "#baed91", "#b2cefe", "#f2a2e8", "#7979ff", "#86bcff", "#8adcff", "#1ffef3", "#4bfe78", "#f9bb00", "#ff800d", "#ff9331", "#c47557", "#c48484"];
 var statusCode = '';
 
 $(document).ready(function() {
@@ -17,7 +17,6 @@ $(document).ready(function() {
     if (activeUser === 0){
         $("#login").show();
         $( "div:not(.login)").fadeTo( "slow" , 0.5, function() {
-            // Animation complete.
         });
         $("#submit").prop("disabled", true)
     }
@@ -28,7 +27,11 @@ $(document).ready(function() {
     $("#submit").click(function(){
         checkCredentials()
     })
-
+    $('#password').keypress(function(e) {
+      if(e.which == 13) {
+         checkCredentials();
+      }
+  });
     function checkActiveUser(){
         var displayname =  $('#displayname').val();
         var userName =  $('#username').val();
@@ -71,6 +74,41 @@ $(document).ready(function() {
     }
 
     setInterval(reload, 5000);
+    
+   function unicoder(data){
+       for (var i = 0; i < data.length; i++) {
+       var unistring = data.charCodeAt(i);
+}
+   }
+    
+    function toUnicode(inputString) {
+            var outputString = '';
+            var theUnicode = ''
+            for (var i=0; i < inputString.length; i++) {
+            var theUnicode = theUnicode + inputString.charCodeAt(i);
+                while (theUnicode.length < 6) {
+                    theUnicode = theUnicode + theUnicode.charCodeAt(i);
+                }
+            outputString += theUnicode;
+            }
+        return theUnicode
+        }     
+
+    function colorfying(data){
+            var userAscii = toUnicode(data)
+            
+            /*if(userAscii.length < 6){
+                while(userAscii.length < 6){
+                    userAscii = userAscii + userAscii;
+                }*/
+            
+            if(userAscii.length > 6){
+                userAscii = userAscii.substring(0, 6)
+            }  
+            var usercolor= "#" + userAscii
+        return usercolor;
+        
+    }
 
     // Anfrage auf url mit type und header(für authorization)
     function getChats() {
@@ -113,6 +151,7 @@ $(document).ready(function() {
   }
 
     
+    
     function getUser() {
       $.ajax(({
           type: "GET",
@@ -140,7 +179,10 @@ $(document).ready(function() {
           //verarbeitung der response daten
     })).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
          $.each(data, function(i) {
-            $('#userlist').append($("<li>").append($("<a>").text(data[i]).attr('href','javascript:changeActiveRoom("' + data[i] + '")')));
+             var uc = colors;
+            $('#userlist').append($("<li>").append($("<a>").text(data[i]).attr('href','javascript:changeActiveRoom("' + data[i] + '")').css('color', colorfying(data[i]))));
+             console.log(toUnicode(data[i]));
+             console.log(colorfying(data[i]));
 
          });
     });
@@ -215,7 +257,7 @@ function changeActiveRoom(name) {
              //differenciation between messages from the user and from others (for left and right aligne)
              if(data[i].user == displayname) {
 
-
+                 
                 $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": <br/>" + data[i].message))).addClass("ownMessage").css('background-color', 'red'));
              } else {
                 $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + "  : <br/> " + data[i].message))));
@@ -246,8 +288,12 @@ function changeActiveRoom(name) {
             for (var i = messages.length; i < data.length; i++) {
               messages[i] = data[i];
               if(data[i].user == displayname) {
-                 $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": <br/>" + data[i].message))).addClass("ownMessage"));
-              } else {
+        
+                  $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": <br/>" + data[i].message))).addClass("ownMessage"));
+              } else {  
+                  $.each(data, function(i){
+                      var uc= colors
+                  })
                                         $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + "  : <br/> " + data[i].message).attr('color', 'red'))));
               }
             }
