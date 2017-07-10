@@ -26,22 +26,17 @@ $(document).ready(function() {
 
     $("#login").change(function() {
         checkActiveUser();
-    })
+    });
     $("#submit").click(function(){
-        checkCredentials()
-    })
+        console.log("submitted");
+        checkCredentials();
+    });
     $('#password').keypress(function(e) {
       if(e.which == 13) {
          checkCredentials();
       }
-  });
-    function checkActiveUser(){
-        var displayname =  $('#displayname').val();
-        var userName =  $('#username').val();
-        var password =  $('#password').val();
-        if (displayname != '' && userName != '' && password != '') {
-            $("#submit").prop("disabled", false);
-        }
+    });
+    
   if (activeUser === 0){
     $("#login").show();
     $( "div:not(.login)").fadeTo( "slow" , 0.5, function() {
@@ -52,10 +47,10 @@ $(document).ready(function() {
 
   $("#login").change(function() {
     checkActiveUser();
-  })
+  });
   $("#submit").click(function(){
-    checkCredentials()
-  })
+    checkCredentials();
+  });
 
   function checkActiveUser(){
     var displayname =  $('#displayname').val();
@@ -72,8 +67,11 @@ $(document).ready(function() {
     userName =  $('#username').val();
     password =  $('#password').val();
     $( "div").css({opacity: 1});
+      
+      console.log(userName,password);
     getChats();
     getUser();
+      console.log(userName,password);
     if (statusCode === 200) {
       activeUser = displayname;
       $( '#login' ).hide();
@@ -83,15 +81,6 @@ $(document).ready(function() {
     }
   }
 
-  $.ajax(({
-    type: "GET",
-    url: "http://liebknecht.danielrutz.com:3000/api/chats/Lobby/users/",
-    dataType: 'json',
-    async: false,
-    headers: {
-      "Authorization": "Basic " + btoa("dhbw" + ":" + 'dhbw-pw')
-    }
-  }));
 
   function reload() {
     getNewMessages();
@@ -101,25 +90,24 @@ $(document).ready(function() {
     
    function unicoder(data){
        for (var i = 0; i < data.length; i++) {
-       var unistring = data.charCodeAt(i);
-}
+           var unistring = data.charCodeAt(i);
+       }
    }
     
     function toUnicode(inputString) {
-            var outputString = '';
-            var theUnicode = ''
-            for (var i=0; i < inputString.length; i++) {
+        var theUnicode = '';
+        for (var i=0; i < inputString.length; i++) {
             var theUnicode = theUnicode + inputString.charCodeAt(i);
-                while (theUnicode.length < 6) {
-                    theUnicode = theUnicode + theUnicode.charCodeAt(i);
-                }
-            outputString += theUnicode;
+            while (theUnicode.length < 6) {
+                theUnicode = theUnicode + theUnicode.charCodeAt(i);
             }
-        return theUnicode
-        }     
+        }
+        console.log(theUnicode);
+        return theUnicode;
+    }     
 
     function colorfying(data){
-            var userAscii = toUnicode(data)
+            var userAscii = toUnicode(data);
             
             /*if(userAscii.length < 6){
                 while(userAscii.length < 6){
@@ -127,17 +115,18 @@ $(document).ready(function() {
                 }*/
             
             if(userAscii.length > 6){
-                userAscii = userAscii.substring(0, 6)
+                userAscii = userAscii.substring(0, 6);
             }  
-            var usercolor= "#" + userAscii
+            var usercolor= "#" + userAscii;
         return usercolor;
-        
     }
-  setInterval(reload, 5000);
+  
+    
+    setInterval(reload, 5000);
 
     // Anfrage auf url mit type und header(für authorization)
   function getChats() {
-    $.ajax(({
+    $.ajax({
       type: "GET",
       url: "http://liebknecht.danielrutz.com:3000/api/chats/",
       statusCode: {
@@ -161,7 +150,7 @@ $(document).ready(function() {
       }
 
           //verarbeitung der response daten
-    })).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
+    }).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
       if(data.length > 0) {
         changeActiveRoom(data[0]);
       }
@@ -178,7 +167,7 @@ $(document).ready(function() {
     
     
     function getUser() {
-      $.ajax(({
+      $.ajax({
           type: "GET",
           url: "http://liebknecht.danielrutz.com:3000/api/chats/Lobby/users",
           statusCode: {
@@ -202,10 +191,10 @@ $(document).ready(function() {
           }
 
           //verarbeitung der response daten
-    })).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
+    }).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
          $.each(data, function(i) {
              var uc = colors;
-            $('#userlist').append($("<li>").append($("<a>").text(data[i]).attr('href','javascript:changeActiveRoom("' + data[i] + '")').css('color', colorfying(data[i]))));
+            $('#userlist').append($("<li>").append($("<a>").text(data[i]).attr('href','javascript:changeActiveRoom("' + data[i] + '")').css('color', 'red')));
              console.log(toUnicode(data[i]));
              console.log(colorfying(data[i]));
 
@@ -220,9 +209,6 @@ $(document).ready(function() {
     sendMessage();
   });
 
-
-// TODO: decide what to do with this counter, because it is unused
-  var counter2 = 0
 
 
   $('#chatBar').keypress(function(e) {
@@ -239,7 +225,7 @@ $(document).ready(function() {
 
   $('#searchrev').click(function(){
     reversesearch();
-  })
+  });
 
   function search(){
     // console.log('going again...');
@@ -251,22 +237,20 @@ $(document).ready(function() {
   }
 
   document.getElementById('searchBar').value = '';
-};
-
+});
+    
 function reversesearch(){
-  $("#messages li").show()
+  $("#messages li").show();
 }
-
-
 
 function changeActiveRoom(name) {
 
   activeChat = name;
-  $('#chatname').text("Active Chat: " + activeChat)
+  $('#chatname').text("Active Chat: " + activeChat);
 
   $('#messages').empty();
 
-  $.ajax(({
+  $.ajax({
     type: "GET",
     url: "http://liebknecht.danielrutz.com:3000/api/chats/" + name,
     dataType: 'json',
@@ -275,7 +259,7 @@ function changeActiveRoom(name) {
       "Authorization": "Basic " + btoa(userName + ":" + password)
     }
     // verarbeitung der response daten
-  })).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
+  }).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
     messages = data;
     $.each(data, function(i) {
     // messages[i] = data[i];
@@ -299,7 +283,7 @@ function changeActiveRoom(name) {
 
 
 function getNewMessages() {
-  $.ajax(({
+  $.ajax({
     type: "GET",
     url: "http://liebknecht.danielrutz.com:3000/api/chats/" + activeChat,
     dataType: 'json',
@@ -309,7 +293,7 @@ function getNewMessages() {
     }
 
    //verarbeitung der response daten
-  })).then(function(data) {
+  }).then(function(data) {
     if (data.length > messages.length) {
       for (var i = messages.length; i < data.length; i++) {
         messages[i] = data[i];
@@ -330,7 +314,7 @@ function getNewMessages() {
 
 function sendMessage() {
   var message = $('#chatBar').val();
-  $.ajax(({
+  $.ajax({
     type: "POST",
     url: "http://liebknecht.danielrutz.com:3000/api/chats/" + activeChat,
     dataType: 'json',
@@ -340,7 +324,7 @@ function sendMessage() {
     contentType: 'application/json',
     data: JSON.stringify({ "roomId": activeChat, 'user': displayname, 'message': message }),
     async: false
-  })).then(function() {
+  }).then(function() {
     changeActiveRoom(activeChat);
   });
   $(document).ready(function(){
@@ -376,4 +360,4 @@ function emojifying(message){
 
 
   return message;
-}});
+}
