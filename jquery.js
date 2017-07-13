@@ -2,14 +2,13 @@
 
 var activeChat = '';
 var messages;
+var chats;
+var users;
 var userName = '';
 var activeUser = 0;
 var displayname = '';
 var password = '';
-var colors = ["e1f7d5", "ffbdbd", "c9c9ff", "f1cbff", "ffb3ba", "ffdfba", "ffffba", "baffc9", "bae1ff", "fea3aa", "f8b88b", "faf884", "baed91", "b2cefe", "f2a2e8", "7979ff", "86bcff", "8adcff", "1ffef3", "4bfe78", "f9bb00", "ff800d", "ff9331", "c47557", "c48484"];
 var statusCode = '';
-
-var userColors = {};
 
 $(document).ready(function() {
     // console.log('going again...');
@@ -65,7 +64,8 @@ $(document).ready(function() {
   }
 
   function reload() {
-    getNewMessages();
+      getNewMessages();
+      
   }
 
   setInterval(reload, 5000);
@@ -97,6 +97,7 @@ $(document).ready(function() {
 
         //verarbeitung der response daten
     })).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
+        chats = data;
       if(data.length > 0) {
         changeActiveRoom(data[0]);
       }
@@ -137,11 +138,10 @@ $(document).ready(function() {
 
           //verarbeitung der response daten
     })).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
+        user = data;
       $.each(data, function(i) {
         $('#userlist').append($("<li>").append($("<a>").text(data[i]).css('color', colorfying(data[i])).attr('href','javascript:changeActiveRoom("' + data[i] + '")')));
 
-            // assign a color to each user
-        userColors[data[i].toString()] = colors[i % colors.length];
       });
     });
   }
@@ -268,7 +268,7 @@ function createMessage(user, text, time) {
   li.append(username);
 
   // message text
-  li.append($("<p>").html(text));
+  li.append($("<p>").html(emojifying(text)));
 
   // message time
   li.append($("<p>").html(timing(time)).addClass("time"));
@@ -293,17 +293,90 @@ function getNewMessages() {
     if (data.length > messages.length) {
       for (var i = messages.length; i < data.length; i++) {
         messages[i] = data[i];
-        if(data[i].user == displayname) {
-          $('#messages').append($("<li>").append($("<p>").html(emojifying(data[i].user + ": <br/>" + data[i].message))).addClass("ownMessage"));
-        } else {
-          var li = $("<li>").append($("<p>").html(emojifying(data[i].user + "  : <br/> " + data[i].message)));
-          li.addClass("ownMessage");
-          li.attr('background-color', 'red !important');
-          $('#messages').append(li);
+        if(data[i].user === displayname) {
+          $('#messages').append(createMessage(data[i].user, data[i].message, data[i].timestamp).addClass("ownMessage"));
+      } else {
+        $('#messages').append(createMessage(data[i].user, data[i].message, data[i].timestamp));
         }
       }
     }
   });
+  $(document).ready(function(){
+    $('#messageid').animate({
+      scrollTop: $('#messageid').get(0).scrollHeight}, 1);
+  });
+}
+
+function getNewRooms() {  
+    
+  $.ajax(({
+    type: "GET",
+    url: "http://liebknecht.danielrutz.com:3000/api/chats/",
+    dataType: 'json',
+    async: false,
+    headers: {
+      "Authorization": "Basic " + btoa(userName + ":" + password)
+    }
+
+      
+      
+      
+       //verarbeitung der response daten
+  })).then(function(data) {
+    if (data.length > chats.length) {
+      for (var i = chats.length; i < data.length; i++) {
+        chats[i] = data[i];
+        } if(data.length > 0) {
+        changeActiveRoom(data[0]);
+      }
+      else {
+         // no rooms yet .. maybe show button to create a new one?
+      }
+      $.each(data, function(i) {
+        $('#chats').append($("<li>").append($("<a>").text(data[i]).attr('href','javascript:changeActiveRoom("' + data[i] + '")')));
+
+       });
+    }
+     });
+    
+  
+  $(document).ready(function(){
+    $('#messageid').animate({
+      scrollTop: $('#messageid').get(0).scrollHeight}, 1);
+  });
+}
+
+function getNewUsers() {  
+    
+  $.ajax(({
+    type: "GET",
+    url: "http://liebknecht.danielrutz.com:3000/api/chats/Lobby/users",
+    dataType: 'json',
+    async: false,
+    headers: {
+      "Authorization": "Basic " + btoa(userName + ":" + password)
+    }      
+      
+       //verarbeitung der response daten
+  })).then(function(data) {
+      console.log("users reloaded");
+    if (data.length > user.length) {
+      for (var i = user.length; i < data.length; i++) {
+        user[i] = data[i];
+        } if(data.length > 0) {
+        changeActiveRoom(data[0]);
+      }
+      else {
+         // no rooms yet .. maybe show button to create a new one?
+      }
+       $.each(data, function(i) {
+        $('#userlist').append($("<li>").append($("<a>").text(data[i]).css('color', colorfying(data[i])).attr('href','javascript:changeActiveRoom("' + data[i] + '")')));
+
+       });
+    }
+     });
+    
+  
   $(document).ready(function(){
     $('#messageid').animate({
       scrollTop: $('#messageid').get(0).scrollHeight}, 1);
@@ -337,27 +410,20 @@ function sendMessage() {
 
 function emojifying(message){
 
-  message = message.replace(/\:\(/g, '<img alt="sad face" class="emoji" src="images/sad_face.png">');
-
-  message = message.replace(/:O/g, '<img alt="shocked face" class="emoji" src="images/shocked_face.png">');
-
-  message = message.replace(/:o/g, '<img alt="shocked face" class="emoji" src="images/shocked_face.png">');
-
-  message = message.replace(/O:\)/g, '<img alt="angel face" class="emoji" src="images/angel_face.png">');
-
-  message = message.replace(/o:\)/g, '<img alt="angel face" class="emoji" src="images/angel_face.png">');
-
-  message = message.replace(/:P/g, '<img alt="angel face" class="emoji" src="images/tongue_face.png">');
-
-  message = message.replace(/:party:/g, '<img alt="party emoji" class="emoji" src="images/party_emoji.png">');
-
-  message = message.replace(/:unicorn:/g, '<img alt="unicorn emoji" class="emoji" src="images/unicorn_emoji.png">');
-
-  message = message.replace(/:\:D/g, '<img alt="laughing face" class="emoji" src="images/laughing_face.png">');
-
-  message = message.replace(/:\)/g, '<img alt="happy face" class="emoji" src="images/happy_face.png">');
-
-  message = message.replace(/:love:/g, '<img alt="heart_emoji" class="emoji" src="images/heart_emoji.png">');
+    message = message.replace(/\:\(/g, '<img alt="sad face" class="emoji" src="images/sad_face.png">');
+    message = message.replace(/:O/g, '<img alt="shocked face" class="emoji" src="images/shocked_face.png">');
+    message = message.replace(/:o/g, '<img alt="shocked face" class="emoji" src="images/shocked_face.png">');
+    message = message.replace(/O:\)/g, '<img alt="angel face" class="emoji" src="images/angel_face.png">');
+    message = message.replace(/o:\)/g, '<img alt="angel face" class="emoji" src="images/angel_face.png">');
+    message = message.replace(/:P/g, '<img alt="angel face" class="emoji" src="images/tongue_face.png">');
+    message = message.replace(/:party:/g, '<img alt="party emoji" class="emoji" src="images/party_emoji.png">');
+    message = message.replace(/:unicorn:/g, '<img alt="unicorn emoji" class="emoji" src="images/unicorn_emoji.png">');
+    message = message.replace(/:\:D/g, '<img alt="laughing face" class="emoji" src="images/laughing_face.png">');
+    message = message.replace(/:\)/g, '<img alt="happy face" class="emoji" src="images/happy_face.png">');
+    message = message.replace(/:love:/g, '<img alt="heart_emoji" class="emoji" src="images/heart_emoji.png">');
+    message = message.replace(/\<\3/g, '<img alt="sad face" class="emoji" src="images/sad_face.png">');
+    message = message.replace(/;\)/g, '<img alt="shocked face" class="emoji" src="images/wink_face.png">');
+    
 
 
   return message;
