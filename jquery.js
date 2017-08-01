@@ -44,8 +44,10 @@ $(document).ready(function() {
       $("#submit").prop("disabled", false);
     }
   }
-
-
+    
+$("button#light").click(function() { $("link[rel=stylesheet]").attr({href : "light.css"}); })
+    
+    
   function checkCredentials(){
     displayname =  $('#displayname').val();
     userName =  $('#username').val();
@@ -111,6 +113,20 @@ $(document).ready(function() {
     });
   }
 
+    
+function swapStyleSheet(sheet) {
+    document.getElementById("pagestyle").href=sheet;  
+}
+
+function initate() {
+    var style1 = document.getElementById("stylesheetdark");
+    var style2 = document.getElementById("stylesheetlight");
+
+    style1.onclick = function () { swapStyleSheet("stylesheetdark.css") };
+    style2.onclick = function () { swapStyleSheet("stylesheetlight.css"); };
+}
+
+window.onload = initate;
 
   function getUser() {
     $.ajax(({
@@ -268,7 +284,7 @@ function createMessage(user, text, time) {
   li.append(username);
 
   // message text
-  li.append($("<p>").html(emojifying(text)));
+  li.append($("<p>").html(emojifying(regexcheck(text))));
 
   // message time
   li.append($("<p>").html(timing(time)).addClass("time"));
@@ -423,8 +439,16 @@ function emojifying(message){
     message = message.replace(/:love:/g, '<img alt="heart_emoji" class="emoji" src="images/heart_emoji.png">');
     message = message.replace(/\<\3/g, '<img alt="sad face" class="emoji" src="images/sad_face.png">');
     message = message.replace(/;\)/g, '<img alt="shocked face" class="emoji" src="images/wink_face.png">');
-    
-
-
   return message;
 }
+
+function regexcheck(message){
+    
+    message = message.replace(/&/g, '&amp;');
+    message = message.replace(/</g, '&lt;');
+    message = message.replace(/>/g, '&gt;');
+    message = message.replace(/"/g, '&quot;');
+    return message;
+}
+
+

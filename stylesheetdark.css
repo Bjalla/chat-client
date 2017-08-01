@@ -26,6 +26,7 @@ body{
     list-style: none;
 }
 
+
 #messages li {
     border: 1px solid black;
     max-width: 30%;
@@ -154,6 +155,13 @@ body{
     overflow-y: auto;
 }
 
+#accessibility{
+    padding-top: 10px;
+}
+#accessibility legend{
+    color: #FF862C;
+}
+
 .rooms hr{
     height: 5px;
 	background: url(images/line.png) repeat-x 0 0;
@@ -242,6 +250,7 @@ body{
     border-top: solid 1px;
     border-bottom: solid 1px;
     border-color: #666;*/
+    background-color: black;
 }
 
 .text #searchBar{
