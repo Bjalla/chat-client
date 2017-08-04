@@ -3,7 +3,7 @@
 var activeChat = '';
 var messages;
 var chats;
-var users;
+var user;
 var userName = '';
 var activeUser = 0;
 var displayname = '';
@@ -44,10 +44,13 @@ $(document).ready(function() {
       $("#submit").prop("disabled", false);
     }
   }
-    
-$("button#light").click(function() { $("link[rel=stylesheet]").attr({href : "light.css"}); })
-    
-    
+
+  $("button#light").click(function() {
+    $("link[rel=stylesheet]").attr({
+      href: "light.css"
+    });
+  });
+
   function checkCredentials(){
     displayname =  $('#displayname').val();
     userName =  $('#username').val();
@@ -66,8 +69,7 @@ $("button#light").click(function() { $("link[rel=stylesheet]").attr({href : "lig
   }
 
   function reload() {
-      getNewMessages();
-      
+    getNewMessages();
   }
 
   setInterval(reload, 5000);
@@ -99,7 +101,7 @@ $("button#light").click(function() { $("link[rel=stylesheet]").attr({href : "lig
 
         //verarbeitung der response daten
     })).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
-        chats = data;
+      chats = data;
       if(data.length > 0) {
         changeActiveRoom(data[0]);
       }
@@ -113,20 +115,25 @@ $("button#light").click(function() { $("link[rel=stylesheet]").attr({href : "lig
     });
   }
 
-    
-function swapStyleSheet(sheet) {
-    document.getElementById("pagestyle").href=sheet;  
-}
 
-function initate() {
+  function swapStyleSheet(sheet) {
+    document.getElementById("pagestyle").href=sheet;
+  }
+
+  function initate() {
     var style1 = document.getElementById("stylesheetdark");
     var style2 = document.getElementById("stylesheetlight");
 
-    style1.onclick = function () { swapStyleSheet("stylesheetdark.css") };
-    style2.onclick = function () { swapStyleSheet("stylesheetlight.css"); };
-}
+    style1.onclick = function () {
+      swapStyleSheet("stylesheetdark.css")
+    }
 
-window.onload = initate;
+    style2.onclick = function () {
+      swapStyleSheet("stylesheetlight.css");
+    }
+  }
+
+  window.onload = initate;
 
   function getUser() {
     $.ajax(({
@@ -154,7 +161,6 @@ window.onload = initate;
 
           //verarbeitung der response daten
     })).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
-        user = data;
       $.each(data, function(i) {
         $('#userlist').append($("<li>").append($("<a>").text(data[i]).css('color', colorfying(data[i])).attr('href','javascript:changeActiveRoom("' + data[i] + '")')));
 
@@ -311,8 +317,8 @@ function getNewMessages() {
         messages[i] = data[i];
         if(data[i].user === displayname) {
           $('#messages').append(createMessage(data[i].user, data[i].message, data[i].timestamp).addClass("ownMessage"));
-      } else {
-        $('#messages').append(createMessage(data[i].user, data[i].message, data[i].timestamp));
+        } else {
+          $('#messages').append(createMessage(data[i].user, data[i].message, data[i].timestamp));
         }
       }
     }
@@ -323,8 +329,7 @@ function getNewMessages() {
   });
 }
 
-function getNewRooms() {  
-    
+function getNewRooms() {
   $.ajax(({
     type: "GET",
     url: "http://liebknecht.danielrutz.com:3000/api/chats/",
@@ -334,15 +339,13 @@ function getNewRooms() {
       "Authorization": "Basic " + btoa(userName + ":" + password)
     }
 
-      
-      
-      
        //verarbeitung der response daten
   })).then(function(data) {
     if (data.length > chats.length) {
       for (var i = chats.length; i < data.length; i++) {
         chats[i] = data[i];
-        } if(data.length > 0) {
+      }
+      if(data.length > 0) {
         changeActiveRoom(data[0]);
       }
       else {
@@ -351,19 +354,19 @@ function getNewRooms() {
       $.each(data, function(i) {
         $('#chats').append($("<li>").append($("<a>").text(data[i]).attr('href','javascript:changeActiveRoom("' + data[i] + '")')));
 
-       });
+      });
     }
-     });
-    
-  
+  });
+
+
   $(document).ready(function(){
     $('#messageid').animate({
       scrollTop: $('#messageid').get(0).scrollHeight}, 1);
   });
 }
 
-function getNewUsers() {  
-    
+function getNewUsers() {
+
   $.ajax(({
     type: "GET",
     url: "http://liebknecht.danielrutz.com:3000/api/chats/Lobby/users",
@@ -371,28 +374,28 @@ function getNewUsers() {
     async: false,
     headers: {
       "Authorization": "Basic " + btoa(userName + ":" + password)
-    }      
-      
+    }
+
        //verarbeitung der response daten
   })).then(function(data) {
-      console.log("users reloaded");
+      // console.log("users reloaded");
     if (data.length > user.length) {
       for (var i = user.length; i < data.length; i++) {
         user[i] = data[i];
-        } if(data.length > 0) {
+      }
+      if(data.length > 0) {
         changeActiveRoom(data[0]);
       }
       else {
          // no rooms yet .. maybe show button to create a new one?
       }
-       $.each(data, function(i) {
+      $.each(data, function(i) {
         $('#userlist').append($("<li>").append($("<a>").text(data[i]).css('color', colorfying(data[i])).attr('href','javascript:changeActiveRoom("' + data[i] + '")')));
 
-       });
+      });
     }
-     });
-    
-  
+  });
+
   $(document).ready(function(){
     $('#messageid').animate({
       scrollTop: $('#messageid').get(0).scrollHeight}, 1);
@@ -426,29 +429,29 @@ function sendMessage() {
 
 function emojifying(message){
 
-    message = message.replace(/\:\(/g, '<img alt="sad face" class="emoji" src="images/sad_face.png">');
-    message = message.replace(/:O/g, '<img alt="shocked face" class="emoji" src="images/shocked_face.png">');
-    message = message.replace(/:o/g, '<img alt="shocked face" class="emoji" src="images/shocked_face.png">');
-    message = message.replace(/O:\)/g, '<img alt="angel face" class="emoji" src="images/angel_face.png">');
-    message = message.replace(/o:\)/g, '<img alt="angel face" class="emoji" src="images/angel_face.png">');
-    message = message.replace(/:P/g, '<img alt="angel face" class="emoji" src="images/tongue_face.png">');
-    message = message.replace(/:party:/g, '<img alt="party emoji" class="emoji" src="images/party_emoji.png">');
-    message = message.replace(/:unicorn:/g, '<img alt="unicorn emoji" class="emoji" src="images/unicorn_emoji.png">');
-    message = message.replace(/:\:D/g, '<img alt="laughing face" class="emoji" src="images/laughing_face.png">');
-    message = message.replace(/:\)/g, '<img alt="happy face" class="emoji" src="images/happy_face.png">');
-    message = message.replace(/:love:/g, '<img alt="heart_emoji" class="emoji" src="images/heart_emoji.png">');
-    message = message.replace(/\<\3/g, '<img alt="sad face" class="emoji" src="images/sad_face.png">');
-    message = message.replace(/;\)/g, '<img alt="shocked face" class="emoji" src="images/wink_face.png">');
+  message = message.replace(/\:\(/g, '<img alt="sad face" class="emoji" src="images/sad_face.png">');
+  message = message.replace(/:O/g, '<img alt="shocked face" class="emoji" src="images/shocked_face.png">');
+  message = message.replace(/:o/g, '<img alt="shocked face" class="emoji" src="images/shocked_face.png">');
+  message = message.replace(/O:\)/g, '<img alt="angel face" class="emoji" src="images/angel_face.png">');
+  message = message.replace(/o:\)/g, '<img alt="angel face" class="emoji" src="images/angel_face.png">');
+  message = message.replace(/:P/g, '<img alt="angel face" class="emoji" src="images/tongue_face.png">');
+  message = message.replace(/:party:/g, '<img alt="party emoji" class="emoji" src="images/party_emoji.png">');
+  message = message.replace(/:unicorn:/g, '<img alt="unicorn emoji" class="emoji" src="images/unicorn_emoji.png">');
+  message = message.replace(/:\:D/g, '<img alt="laughing face" class="emoji" src="images/laughing_face.png">');
+  message = message.replace(/:\)/g, '<img alt="happy face" class="emoji" src="images/happy_face.png">');
+  message = message.replace(/:love:/g, '<img alt="heart_emoji" class="emoji" src="images/heart_emoji.png">');
+  message = message.replace(/\<\3/g, '<img alt="sad face" class="emoji" src="images/sad_face.png">');
+  message = message.replace(/;\)/g, '<img alt="shocked face" class="emoji" src="images/wink_face.png">');
+
   return message;
 }
 
 function regexcheck(message){
-    
-    message = message.replace(/&/g, '&amp;');
-    message = message.replace(/</g, '&lt;');
-    message = message.replace(/>/g, '&gt;');
-    message = message.replace(/"/g, '&quot;');
-    return message;
+
+  message = message.replace(/&/g, '&amp;');
+  message = message.replace(/</g, '&lt;');
+  message = message.replace(/>/g, '&gt;');
+  message = message.replace(/"/g, '&quot;');
+
+  return message;
 }
-
-
