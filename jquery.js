@@ -9,8 +9,17 @@ var activeUser = 0;
 var displayname = '';
 var password = '';
 var statusCode = '';
+var permission;
 
 $(document).ready(function() {
+
+// desktop notifications
+  document.addEventListener('DOMContentLoaded', function () {
+    if (Notification.permission !== "granted") {
+      permission = Notification.requestPermission();
+    }
+  });
+
 
 //smileypicker
 
@@ -422,7 +431,7 @@ function changeActiveRoom(name) {
     messages = data;
     $.each(data, function(i) {
       // messages[i] = data[i];
-      //differenciation between messages from the user and from others (for left and right aligne)
+      //differenciation between messages from the user and from others (for left and right align)
       if(data[i].user == displayname) {
         $('#messages').append(createMessage(data[i].user, data[i].message, data[i].timestamp).addClass("ownMessage"));
       } else {
@@ -491,6 +500,27 @@ function createMessage(user, text, time) {
 }
 
 
+function notify(user, message) {
+  if (!Notification) {
+    alert('Desktop notifications not available in your browser.');
+
+    return;
+  }
+
+  if (Notification.permission !== "granted") {
+    Notification.requestPermission();
+  } else {
+    var notification = new Notification('New Message!', {
+      icon: 'notification.png',
+      body: '\n' + user + ': ' + message
+    });
+
+    notification.onclick = function () {
+      window.open("./index.html");
+    };
+  }
+}
+
 function getNewMessages() {
 
   $.ajax(({
@@ -513,6 +543,12 @@ function getNewMessages() {
           $('#messages').append(createMessage(data[i].user, data[i].message, data[i].timestamp));
         }
       }
+
+      var notificationUser = data[messages.length - 1].user.toString();
+      var notificationMessage = data[messages.length - 1].message.toString();
+
+      // console.log(notification);
+      notify(notificationUser, notificationMessage);
     }
   });
   $(document).ready(function(){
