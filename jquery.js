@@ -16,6 +16,7 @@ $(document).ready(function() {
   function checkCookie() {
     var cUser = getCookie("username");
     if (cUser != "") {
+      $('#login').hide();
       alert("Welcome back " + cUser);
     } else {
       checkActiveUser();
@@ -442,6 +443,22 @@ $(document).ready(function() {
 function reversesearch(){
   $("#messages li").show()
 
+}
+
+function newChatRoom() {
+  //TODO: input für room name einlesen
+  var roomName;
+  $.ajax(({
+    type: "POST",
+    url: "http://liebknecht.danielrutz.com:3000/api/chats/" + roomName,
+    dataType: 'json',
+    headers: {
+      "Authorization": "Basic " + btoa(userName + ":" + password)
+    },
+    contentType: 'application/json',
+    data: JSON.stringify({ "roomId": roomName, 'user': displayname, 'message': 'This room was created by ' + displayname }),
+    async: false
+  }));
 }
 
 
