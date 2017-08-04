@@ -18,10 +18,7 @@ $(document).ready(function() {
     if (cUser != "") {
       alert("Welcome back " + cUser);
     } else {
-      cUser = prompt("Please enter your name:", "");
-      if (cUser != "" && cUser !== null) {
-        setCookie("username", cUser, 0.5);
-      }
+      checkActiveUser();
     }
   }
 
@@ -291,8 +288,7 @@ $(document).ready(function() {
       $( "div").css({opacity: 1});
       changeActiveRoom();
 
-      setCookie();
-
+      setCookie("username", displayname, 0.5);
     } else {
       alert('Username or password not correct. Please enter the correct credentials.');
     }
