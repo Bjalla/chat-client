@@ -13,6 +13,43 @@ var permission;
 
 $(document).ready(function() {
 
+  function checkCookie() {
+    var cUser = getCookie("username");
+    if (cUser != "") {
+      alert("Welcome back " + cUser);
+    } else {
+      cUser = prompt("Please enter your name:", "");
+      if (cUser != "" && cUser !== null) {
+        setCookie("username", cUser, 0.5);
+      }
+    }
+  }
+
+  function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
+  function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+
+    return "";
+  }
+
+
+  checkCookie();
 // desktop notifications
   document.addEventListener('DOMContentLoaded', function () {
     if (Notification.permission !== "granted") {
@@ -253,6 +290,8 @@ $(document).ready(function() {
       $( '#login' ).hide();
       $( "div").css({opacity: 1});
       changeActiveRoom();
+
+      setCookie();
 
     } else {
       alert('Username or password not correct. Please enter the correct credentials.');
