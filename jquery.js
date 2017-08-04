@@ -348,15 +348,11 @@ $("#login").hide();
 
           //verarbeitung der response daten
     })).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
-<<<<<<< HEAD
-=======
-
         data.sort(function (a, b) {
             return a.toLowerCase().localeCompare(b.toLowerCase());
         });
 
         user = data;
->>>>>>> d7f81de6e2f8d5d331c0d27539addf50ac9b7603
       $.each(data, function(i) {
         $('#userlist').append($("<li>").append($("<a>").text(data[i]).css('color', colorfying(data[i])).attr('href','javascript:changeActiveRoom("' + data[i] + '")')));
 
