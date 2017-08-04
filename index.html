@@ -19,15 +19,23 @@
                 </div>
                 
                 <div class="chat_header">
-                    <h1 class="h1" id="chatname">Active chat</h1></div>
+                    <h1 class="h1" id="chatname">Active chat</h1>
+                <input type="text" id="searchBar">
+                    <input type="button" id="searchrev"></div>
                 
-                <div class="rooms">
+                <div class="rooms" id="rooms">
                     <div class="chats">
                         <form id="accessibility">
                         <fieldset>
                             <legend>Color Scheme</legend>
                             <input type="radio" name="scheme" id="stylesheetdark" > Dark 
                             <input type="radio" name="scheme" id="stylesheetlight" > Black & White 
+                            <p>
+                            Textsize:
+                            <br>                              
+                            <input type='button'id="textSizeminus" value='-' class='textSize' field='textSize'/>
+                            <input type='text' id="textSizeValue" name='textSize' value='1' class='textSize' />
+                            <input type='button' id="textSizeplus" value='+' class='textSize' field='textSize'/>
                         </fieldset>
                     </form>
 
@@ -47,16 +55,55 @@
                 <div id="messageid">
                     <ul id="messages"></ul>
 
-<!--
-                <div class="messagebody" id="messagebody">Message: hey</div>
-                <div class="messagebody" id="messagebody2">Message: hey2</div>
--->
                 </div>
+                    <div id="list" style="display:none"> 
                     
-                <div class="text">
-                    <input type="text" id="searchBar">
-                    <input type="button" id="searchrev">
-                    <input id="chatBar" type="text" name="lname">
+                        <img id="angel_face" class="smileys" src="images/angel_face.png">
+                        <img id="crying_face" class="smileys" src="images/crying_face.png">
+                        <img id="hearteyed_face" class="smileys" src="images/hearteyed_face.png">
+                        <img id="kissing_face" class="smileys" src="images/kissing_face.png">
+                        <img id="mouthless_face" class="smileys" src="images/mouthless_face.png">
+                        <img id="nerd_face" class="smileys" src="images/nerd_face.png">
+                        <img id="happy_face" class="smileys" src="images/happy_face.png">
+                        <img id="smirking_face" class="smileys" src="images/smirking_face.png">
+                        <img id="sleeping_face" class="smileys" src="images/sleeping_face.png">
+                        <img id="unamused_face" class="smileys" src="images/unamused_face.png">
+                        <img id="zippermouthed_face" class="smileys" src="images/zippermouthed_face.png">
+                        <img id="laughing_face" class="smileys" src="images/laughing_face.png">
+                        <img id="sad_face" class="smileys" src="images/sad_face.png">
+                        <img id="shocked_face" class="smileys" src="images/shocked_face.png">
+                        <img id="tongue_face" class="smileys" src="images/tongue_face.png">
+                        <img id="wink_face" class="smileys" src="images/wink_face.png">
+                        <br>
+                        <img id="alien" class="smileys" src="images/alien_emoji.png">
+                        <img id="unicorn" class="smileys" src="images/unicorn_emoji.png">
+                        <img id="ghost_emoji" class="smileys" src="images/ghost_emoji.png">
+                        <img id="party_emoji" class="smileys" src="images/party_emoji.png">
+                        <img id="heart" class="smileys" src="images/heart_emoji.png">
+                        
+                         
+                    </div>
+                <div class="text"> 
+                    
+                   
+                    
+                    <input type="button" id="smileypicker">
+                    
+                    <input list="suggestions" id="chatBar" type="text" name="lname">
+                    <datalist id="suggestions">
+                      <option value=":-)">
+                      <option value=":party:">
+                      <option value=":(">
+                      <option value=":O">
+                      <option value=":P">
+                      <option value=":unicorn:">
+                      <option value="<3">
+                      <option value=";)">
+                      <option value=":D">
+                      <option value="C">
+                      <option value="O:)">
+                      <option value=":alien:">
+                    </datalist>
                     <button id="button"></button>
                 </div>
                 </div>

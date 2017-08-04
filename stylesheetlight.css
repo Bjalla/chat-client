@@ -84,7 +84,6 @@ body{
             padding-left: 5px;
             font-family: Arial ,sans-serif;
             font-size: 1.5em;
-            font-variant: small-caps;
         }
 
 .chat_header{
@@ -126,7 +125,6 @@ body{
             padding-left: 5px;
             font-family: Arial ,sans-serif;
             font-size: 1.5em;
-            font-variant: small-caps;
             color: black;
             border-bottom: solid,3px;
 
@@ -165,6 +163,20 @@ body{
     padding-top: 10px;
 }
 
+#accessibility .button{
+    background-color: #FF862C;
+    width: 25px;
+    padding: 5px;
+    text-align: center;
+    border: none;
+}
+
+#textSizeValue{
+    background-color: #666;
+    width: 5%;
+    border-style: solid;
+}
+
 .rooms hr{
     height: 5px;
 	background: url(images/line.png) repeat-x 0 0;
@@ -174,7 +186,6 @@ body{
     color: black;
             font-family: Arial ,sans-serif;
             font-size: 1.5em;
-            font-variant: small-caps;
             width: 20%;
 }
 
@@ -190,7 +201,7 @@ body{
 
 .active_chat {
 
-    background-color: #222327;
+    background-color: grey;
     color: black;
     box-sizing: border-box;
     height: 87%;
@@ -217,7 +228,7 @@ body{
 
 }
 
-.messageid{
+.geid{
     position: absolute;
     right: 5px;
     top: 5px;
@@ -255,7 +266,7 @@ body{
     border-color: black;
 }
 
-.text #searchBar{
+ #searchBar{
     background-color:white;
     width: 14%;
     left: 2%;
@@ -275,7 +286,7 @@ body{
     border-color: black;
 }
 
-.text #searchrev{
+#searchrev{
     background-color:white;
     width: 4%;
     left: 16%;
@@ -355,7 +366,6 @@ body{
                 padding-left: 5px;
                 font-family: Arial ,sans-serif;
                 font-size: 2em;
-                font-variant: small-caps;
             }
 
 
@@ -475,6 +485,5 @@ body{
             padding-left: 40%;
             font-family: Arial ,sans-serif;
             font-size: 1.8em;
-            font-variant: small-caps;
             width: 20%;
 }

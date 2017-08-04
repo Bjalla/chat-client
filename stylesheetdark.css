@@ -1,6 +1,5 @@
 body{
     background-color: #666;
-    font-size: 80%;
 }
 
 .emoji{
@@ -24,6 +23,7 @@ body{
 
 #messages {
     list-style: none;
+    font-size: 1em;
 }
 
 
@@ -80,7 +80,6 @@ body{
             padding-left: 5px;
             font-family: Arial ,sans-serif;
             font-size: 1.5em;
-            font-variant: small-caps;
         }
 
 .chat_header{
@@ -121,7 +120,6 @@ body{
             padding-left: 5px;
             font-family: Arial ,sans-serif;
             font-size: 1.5em;
-            font-variant: small-caps;
 
 
         }
@@ -160,7 +158,37 @@ body{
 }
 #accessibility legend{
     color: #FF862C;
+    font-size: 1.2em;
 }
+
+#textSizeminus {
+    background-color: #FF862C;
+    color: white;
+    border-style: none;
+    width: 6%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 5px;
+}
+
+#textSizeplus {
+    background-color: #FF862C;
+    color: white;
+    border-style: none;
+    width: 6%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 5px;
+}
+
+#textSizeValue{
+    background-color: #666;
+    width: 10%;
+    border-style: none;
+    text-align: center;
+    margin-top: 5px;
+}
+
 
 .rooms hr{
     height: 5px;
@@ -171,12 +199,12 @@ body{
     color: #FF862C;
             font-family: Arial ,sans-serif;
             font-size: 1.5em;
-            font-variant: small-caps;
             width: 20%;
+            margin-top: 20px;
 }
 
 .rooms ul{
-    margin-top: 25px;
+    margin-top: 5px;
 }
 
 .rooms li{
@@ -212,7 +240,7 @@ body{
     border-left: solid;
     border-color: #666;
     border-width: 3px;
-
+    display: inline;
 }
 
 .messageid{
@@ -253,10 +281,52 @@ body{
     background-color: black;
 }
 
-.text #searchBar{
+.smileys{
+ width: 25px;
+    height: 25px;
+}
+
+#list{
+    position: absolute;
+    bottom: 10%;
+    height: auto;
+    width: 20%;
+    background-color: #222327;
+    left: 16%;
+    border-radius: 5px;
+    padding: 10px;
+    display: none!important;
+}
+
+#smileypicker{
+    background-color:white;
+    width: 4%;
+    left: 16%;
+    height: 70%;
+    top: 15%;
+    border: none;
+    position: absolute;
+    box-sizing: border-box;
+    background-color:white;
+                    background-image: url(images/smiley_button.png);
+                    background-repeat: no-repeat;
+                    background-size: 25px;
+                    background-position: center;
+    color: white;
+    padding-left: 33px;
+}
+
+
+
+#welcomeDiv{
+    display: none;
+}
+
+
+#searchBar{
     background-color:#666;
     width: 14%;
-    left: 2%;
+    right: 6%;
     height: 70%;
     top: 15%;
     border: none;
@@ -271,10 +341,11 @@ body{
     padding-left: 33px;
 }
 
-.text #searchrev{
+
+#searchrev{
     background-color:#666;
     width: 4%;
-    left: 16%;
+    right: 2%;
     height: 70%;
     top: 15%;
     border: none;
@@ -349,7 +420,6 @@ body{
                 padding-left: 5px;
                 font-family: Arial ,sans-serif;
                 font-size: 2em;
-                font-variant: small-caps;
             }
 
 
@@ -357,6 +427,7 @@ body{
               list-style-type: none;
               margin: 10;
               padding: 0;
+                font-size: 10px;
             }
 
             .chats li {
@@ -364,11 +435,12 @@ body{
                 color: antiquewhite;
                 width= 100%;
                 margin: 10;
-                font: 200 15px/1.5 Helvetica, Verdana, sans-serif;
+                font: Helvetica, Verdana, sans-serif;
                 border-top: 1px solid #666;
                 margin: 10;
                 padding-top: 10;
                 padding-bottom: 10;
+                font-size: 15px;
             }
 
             .chats li:last-child {
@@ -381,6 +453,7 @@ body{
                 display: inline-block;
                 height: 30%;
                 width: 100%;
+                font-size: 15px;
                 font: 200 15px/1.5 Helvetica, Verdana, sans-serif;
                 color: antiquewhite;
 
@@ -468,6 +541,5 @@ body{
             padding-left: 40%;
             font-family: Arial ,sans-serif;
             font-size: 1.8em;
-            font-variant: small-caps;
-            width: 20%;
+            width: 30%;
 }

@@ -11,9 +11,191 @@ var password = '';
 var statusCode = '';
 
 $(document).ready(function() {
-    // console.log('going again...');
 
-  $("#login").hide();
+//smileypicker
+
+
+$("#smileypicker").on('click', function() {
+    var x = document.getElementById("list");
+    console.log(x.style.display);
+    if (x.style.display === 'block') {
+        x.style.setProperty ("display", "none", "important");;
+    } else {
+        x.style.setProperty ("display", "block", "important");;
+    }
+});
+
+
+$(function () {
+    $('#alien').on('click', function () {
+        var text = $('#chatBar');
+        text.val(text.val() + ' :alien: ');
+    });
+});
+
+$(function () {
+    $('#unicorn').on('click', function () {
+        var text = $('#chatBar');
+        text.val(text.val() + ' :unicorn: ');
+    });
+});
+
+
+$(function () {
+    $('#party').on('click', function () {
+        var text = $('#chatBar');
+        text.val(text.val() + ' :party: ');
+    });
+});
+
+$(function () {
+    $('#angel_face').on('click', function () {
+        var text = $('#chatBar');
+        text.val(text.val() + ' O:) ');
+    });
+});
+
+$(function () {
+    $('#crying_face').on('click', function () {
+        var text = $('#chatBar');
+        text.val(text.val() + " :'( ");
+    });
+});
+
+$(function () {
+    $('#hearteyed_face').on('click', function () {
+        var text = $('#chatBar');
+        text.val(text.val() + ' :hearteyes: ');
+    });
+});
+
+$(function () {
+    $('#kissing_face').on('click', function () {
+        var text = $('#chatBar');
+        text.val(text.val() + ' :* ');
+    });
+});
+
+$(function () {
+    $('#mouthless_face').on('click', function () {
+        var text = $('#chatBar');
+        text.val(text.val() + ' :mouthless: ');
+    });
+});
+
+$(function () {
+    $('#nerd_face').on('click', function () {
+        var text = $('#chatBar');
+        text.val(text.val() + ' :nerd: ');
+    });
+});
+
+$(function () {
+    $('#heart').on('click', function () {
+        var text = $('#chatBar');
+        text.val(text.val() + ' :love: ');
+    });
+});
+
+$(function () {
+    $('#happy_face').on('click', function () {
+        var text = $('#chatBar');
+        text.val(text.val() + ' :) ');
+    });
+});
+
+$(function () {
+    $('#smirking_face').on('click', function () {
+        var text = $('#chatBar');
+        text.val(text.val() + ' :smirking: ');
+    });
+});
+
+$(function () {
+    $('#sleeping_face').on('click', function () {
+        var text = $('#chatBar');
+        text.val(text.val() + ' :sleeping: ');
+    });
+});
+
+$(function () {
+    $('#unamused_face').on('click', function () {
+        var text = $('#chatBar');
+        text.val(text.val() + ' :unamused: ');
+    });
+});
+
+$(function () {
+    $('#zippermouthed_face').on('click', function () {
+        var text = $('#chatBar');
+        text.val(text.val() + ' :zippermouth: ');
+    });
+});
+
+$(function () {
+    $('#laughing_face').on('click', function () {
+        var text = $('#chatBar');
+        text.val(text.val() + ' :D ');
+    });
+});
+
+$(function () {
+    $('#sad_face').on('click', function () {
+        var text = $('#chatBar');
+        text.val(text.val() + ' :( ');
+    });
+});
+
+$(function () {
+    $('#shocked_face').on('click', function () {
+        var text = $('#chatBar');
+        text.val(text.val() + ' :O ');
+    });
+});
+
+$(function () {
+    $('#tongue_face').on('click', function () {
+        var text = $('#chatBar');
+        text.val(text.val() + ' :P ');
+    });
+});
+
+$(function () {
+    $('#winking_face').on('click', function () {
+        var text = $('#chatBar');
+        text.val(text.val() + ' ;) ');
+    });
+});
+
+
+
+$("#textSizeplus").click(function() {
+    var msg = document.getElementById("messages")
+    var userl = document.getElementById("chats")
+
+    var sizemsg = window.getComputedStyle(msg, null).getPropertyValue("font-size");
+    msg.style.fontSize =(parseFloat(sizemsg.replace(/px/,"")))+5.00+"px";
+
+    var sizeuserl = window.getComputedStyle(userl, null).getPropertyValue("font-size");
+    userl.style.fontSize =(parseFloat(sizeuserl.replace(/px/,"")))+5.00+"px";
+
+    console.log(sizemsg);
+    console.log(sizeuserl);
+});
+
+$("#textSizeminus").click(function() {
+    var msg = document.getElementById("messages")
+    var userl = document.getElementById("chats")
+
+    var sizemsg = window.getComputedStyle(msg, null).getPropertyValue("font-size");
+    msg.style.fontSize =(parseFloat(sizemsg.replace(/px/,"")))-5.00+"px";
+
+    var sizeuserl = window.getComputedStyle(userl, null).getPropertyValue("font-size");
+    userl.style.fontSize =(parseFloat(sizeuserl.replace(/px/,"")))-5.00+"px";
+})
+
+
+$("#login").hide();
 
   if (activeUser === 0){
     $("#login").show();
@@ -101,7 +283,12 @@ $(document).ready(function() {
 
         //verarbeitung der response daten
     })).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
-      chats = data;
+        data.sort(function (a, b) {
+        return a.toLowerCase().localeCompare(b.toLowerCase());
+      });
+
+        chats = data;
+
       if(data.length > 0) {
         changeActiveRoom(data[0]);
       }
@@ -161,6 +348,15 @@ $(document).ready(function() {
 
           //verarbeitung der response daten
     })).then(function(data) {   //wird aufgerufen sobald response auf anfrage kommt
+<<<<<<< HEAD
+=======
+
+        data.sort(function (a, b) {
+            return a.toLowerCase().localeCompare(b.toLowerCase());
+        });
+
+        user = data;
+>>>>>>> d7f81de6e2f8d5d331c0d27539addf50ac9b7603
       $.each(data, function(i) {
         $('#userlist').append($("<li>").append($("<a>").text(data[i]).css('color', colorfying(data[i])).attr('href','javascript:changeActiveRoom("' + data[i] + '")')));
 
@@ -329,6 +525,7 @@ function getNewMessages() {
   });
 }
 
+<<<<<<< HEAD
 function getNewRooms() {
   $.ajax(({
     type: "GET",
@@ -364,6 +561,8 @@ function getNewRooms() {
       scrollTop: $('#messageid').get(0).scrollHeight}, 1);
   });
 }
+=======
+>>>>>>> d7f81de6e2f8d5d331c0d27539addf50ac9b7603
 
 function getNewUsers() {
 
@@ -429,6 +628,7 @@ function sendMessage() {
 
 function emojifying(message){
 
+<<<<<<< HEAD
   message = message.replace(/\:\(/g, '<img alt="sad face" class="emoji" src="images/sad_face.png">');
   message = message.replace(/:O/g, '<img alt="shocked face" class="emoji" src="images/shocked_face.png">');
   message = message.replace(/:o/g, '<img alt="shocked face" class="emoji" src="images/shocked_face.png">');
@@ -443,6 +643,64 @@ function emojifying(message){
   message = message.replace(/\<\3/g, '<img alt="sad face" class="emoji" src="images/sad_face.png">');
   message = message.replace(/;\)/g, '<img alt="shocked face" class="emoji" src="images/wink_face.png">');
 
+=======
+    message = message.replace(/:party:/g, '<img alt="party emoji" class="emoji" src="images/party_emoji.png">');
+
+    message = message.replace(/\:\(/g, '<img alt="sad face" class="emoji" src="images/sad_face.png">');
+    message = message.replace(/\:-\(/g, '<img alt="sad face" class="emoji" src="images/sad_face.png">');
+
+    message = message.replace(/:O/g, '<img alt="shocked face" class="emoji" src="images/shocked_face.png">');
+    message = message.replace(/:-O/g, '<img alt="shocked face" class="emoji" src="images/shocked_face.png">');
+    message = message.replace(/:o/g, '<img alt="shocked face" class="emoji" src="images/shocked_face.png">');
+    message = message.replace(/:o/g, '<img alt="shocked face" class="emoji" src="images/shocked_face.png">');
+
+    message = message.replace(/O:\)/g, '<img alt="angel face" class="emoji" src="images/angel_face.png">');
+    message = message.replace(/O:-\)/g, '<img alt="angel face" class="emoji" src="images/angel_face.png">');
+    message = message.replace(/o:\)/g, '<img alt="angel face" class="emoji" src="images/angel_face.png">');
+    message = message.replace(/o:-\)/g, '<img alt="angel face" class="emoji" src="images/angel_face.png">');
+
+    message = message.replace(/:P/g, '<img alt="angel face" class="emoji" src="images/tongue_face.png">');
+    message = message.replace(/:-P/g, '<img alt="angel face" class="emoji" src="images/tongue_face.png">');
+    message = message.replace(/:p/g, '<img alt="angel face" class="emoji" src="images/tongue_face.png">');
+    message = message.replace(/:-p/g, '<img alt="angel face" class="emoji" src="images/tongue_face.png">');
+
+    message = message.replace(/:unicorn:/g, '<img alt="unicorn emoji" class="emoji" src="images/unicorn_emoji.png">');
+
+    message = message.replace(/:-D/g, '<img alt="laughing face" class="emoji" src="images/laughing_face.png">');
+    message = message.replace(/:D/g, '<img alt="laughing face" class="emoji" src="images/laughing_face.png">');
+
+    message = message.replace(/:\)/g, '<img alt="happy face" class="emoji" src="images/happy_face.png">');
+    message = message.replace(/:-\)/g, '<img alt="happy face" class="emoji" src="images/happy_face.png">');
+
+    message = message.replace(/:love:/g, '<img alt="heart_emoji" class="emoji" src="images/heart_emoji.png">');
+    message = message.replace(/\<3/g, '<img alt="sad face" class="emoji" src="images/sad_face.png">');
+    message = message.replace(/;\)/g, '<img alt="shocked face" class="emoji" src="images/wink_face.png">');
+    message = message.replace(/;-\)/g, '<img alt="shocked face" class="emoji" src="images/wink_face.png">');
+
+    message = message.replace(/:'\(/g, '<img alt="crying face" class="emoji" src="images/crying_face.png">');
+
+     message = message.replace(/:hearteyes:/g, '<img alt="hearteyed face" class="emoji" src="images/hearteyed_face.png">');
+
+     message = message.replace(/:\*/g, '<img alt="kissing face" class="emoji" src="images/kissing_face.png">');
+
+     message = message.replace(/:mouthless:/g, '<img alt="mouthless face" class="emoji" src="images/mouthless_face.png">');
+
+     message = message.replace(/:nerd:/g, '<img alt="nerd face" class="emoji" src="images/nerd_face.png">');
+
+     message = message.replace(/:smirking:/g, '<img alt="smirking face" class="emoji" src="images/smirking_face.png">');
+
+     message = message.replace(/:sleeping:/g, '<img alt="sleeping face" class="emoji" src="images/sleeping_face.png">');
+
+     message = message.replace(/:\//g, '<img alt="unamused face" class="emoji" src="images/unamused_face.png">');
+
+    message = message.replace(/:unamused: /g, '<img alt="unamused face" class="emoji" src="images/unamused_face.png">');
+
+    message = message.replace(/:zippermouth: /g, '<img alt="zippermouthed face" class="emoji" src="images/zippermouthed_face.png">');
+
+    message = message.replace(/:alien: /g, '<img alt="alien emoji" class="emoji" src="images/alien_emoji.png">');
+
+    message = message.replace(/:ghost: /g, '<img alt="ghost emoji" class="emoji" src="images/ghost_emoji.png">');
+>>>>>>> d7f81de6e2f8d5d331c0d27539addf50ac9b7603
   return message;
 }
 
