@@ -240,7 +240,7 @@ body{
     border-left: solid;
     border-color: #666;
     border-width: 3px;
-
+    display: inline;
 }
 
 .messageid{
@@ -286,7 +286,7 @@ body{
     height: 25px;
 }
 
-#smiley-list{
+#list{
     position: absolute;
     bottom: 10%;
     height: auto;
@@ -295,7 +295,7 @@ body{
     left: 16%;
     border-radius: 5px;
     padding: 10px;
-    display: none;
+    display: none!important;
 }
 
 #smileypicker{

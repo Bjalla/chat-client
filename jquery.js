@@ -14,13 +14,14 @@ $(document).ready(function() {
 
 //smileypicker
 
-document.getElementById("smiley-list").style.display = 'block';
-$("#smileypicker").click(function() {
-    var x = document.getElementById("smiley-list");
-    if (x.style.display === 'none') {
-        x.style.display = 'block';
+
+$("#smileypicker").on('click', function() {
+    var x = document.getElementById("list");
+    console.log(x.style.display);
+    if (x.style.display === 'block') {
+        x.style.setProperty ("display", "none", "important");;
     } else {
-        x.style.display = 'none';
+        x.style.setProperty ("display", "block", "important");;
     }
 });
    
