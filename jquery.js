@@ -273,7 +273,7 @@ function getCookie(name) {
   }})
   })
  
-    
+  $("#newRoomForm").hide();  
   $("#login").hide();
 
   if (activeUser === 0){
@@ -484,9 +484,22 @@ function reversesearch(){
 
 }
 
+  $(function () {
+    $('#submitRoom').on('click', function () {
+       newChatRoom();
+
+    });
+  });
+$(function(){
+$('#NewRoomName').keypress(function(e) {
+    if(e.which == 13) {
+      newChatRoom();
+    }
+  })});
+
 function newChatRoom() {
-  //TODO: input für room name einlesen
-  var roomName;
+  
+  var roomName = $('#newRoomName').val();;
   $.ajax(({
     type: "POST",
     url: "http://liebknecht.danielrutz.com:3000/api/chats/" + roomName,
@@ -498,7 +511,23 @@ function newChatRoom() {
     data: JSON.stringify({ "roomId": roomName, 'user': displayname, 'message': 'This room was created by ' + displayname }),
     async: false
   }));
+    $("#newRoomForm").hide();
+    $( "div").css({opacity: 1});
+    getNewRooms();
+    
+    
 }
+
+
+  $(function () {
+    $('#newRoom').on('click', function () {
+       $("#newRoomForm").show();
+        $( "div:not(.newRoomForm)").fadeTo( "slow" , 0.5, function() {
+        // Animation complete.
+    });
+    });
+  });
+
 
 
 
@@ -660,6 +689,9 @@ function getNewRooms() {
 
        //verarbeitung der response daten
   })).then(function(data) {
+      data.sort(function (a, b) {
+        return a.toLowerCase().localeCompare(b.toLowerCase());
+      });
     if (data.length > chats.length) {
       for (var i = chats.length; i < data.length; i++) {
         chats[i] = data[i];

@@ -1,5 +1,5 @@
 body{
-    background-color: #666;
+    background-color: #a4a4a4;
 }
 
 .emoji{
@@ -11,6 +11,16 @@ body{
 #messageid {
     height: 90%;
     overflow-y: scroll;
+}
+
+#newRoom{
+    background-color: #FF862C;
+    border: none;
+    color:white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    position: float;   
 }
 
 #userlist{
@@ -30,7 +40,7 @@ body{
 #messages li {
     border: 1px solid black;
     max-width: 30%;
-    background-color: #666;
+    background-color: #a4a4a4;
     color: black;
     width: 30%;
     margin-right: 65%;
@@ -52,7 +62,7 @@ body{
 .profile{
 
     background-color: #222327;
-    color: #FF720F;
+    color: #FF862C;
     box-sizing: border-box;
 
     /*  width & height  */
@@ -104,7 +114,7 @@ body{
 
     /* Borders: */
     border-left: solid;
-    border-color: #666;
+    border-color: #a4a4a4;
     border-width: 3px;
 
     position: fixed;
@@ -182,7 +192,7 @@ body{
 }
 
 #textSizeValue{
-    background-color: #666;
+    background-color: #a4a4a4;
     width: 10%;
     border-style: none;
     text-align: center;
@@ -238,7 +248,7 @@ body{
 
     /* Borders: */
     border-left: solid;
-    border-color: #666;
+    border-color: #a4a4a4;
     border-width: 3px;
     display: inline;
 }
@@ -247,7 +257,7 @@ body{
     position: absolute;
     right: 5px;
     top: 5px;
-    background-color: #666;
+    background-color: #a4a4a4;
     color: white;
     width: auto%;
     padding: 5px;
@@ -277,7 +287,7 @@ body{
     box-sizing: border-box;
     border-top: solid 1px;
     border-bottom: solid 1px;
-    border-color: #666;*/
+    border-color: #a4a4a4;*/
     background-color: black;
 }
 
@@ -299,18 +309,17 @@ body{
 }
 
 #smileypicker{
-    background-color:white;
-    width: 4%;
-    left: 16%;
+    background-color: #FF862C;
+    width: auto;
+    left: 10%;
     height: 70%;
     top: 15%;
     border: none;
     position: absolute;
     box-sizing: border-box;
-    background-color:white;
                     background-image: url(images/smiley_button.png);
                     background-repeat: no-repeat;
-                    background-size: 25px;
+                    background-size: 33px;
                     background-position: center;
     color: white;
     padding-left: 33px;
@@ -324,7 +333,7 @@ body{
 
 
 #searchBar{
-    background-color:#666;
+    background-color: #a4a4a4;
     width: 14%;
     right: 6%;
     height: 70%;
@@ -332,7 +341,6 @@ body{
     border: none;
     position: absolute;
     box-sizing: border-box;
-    background-color:#666;
                     background-image: url(images/search.png);
                     background-repeat: no-repeat;
                     background-size: 24px;
@@ -343,18 +351,18 @@ body{
 
 
 #searchrev{
-    background-color:#666;
+    background-color:#a4a4a4;
     width: 4%;
     right: 2%;
     height: 70%;
     top: 15%;
     border: none;
     border-left: solid;
-    border-left-width: 1px;
+    border-left-width: 3px;
     border-color: #222327;
     position: absolute;
     box-sizing: border-box;
-    background-color:#666;
+    background-color:#a4a4a4;
                     background-image: url(images/cross.png);
                     background-repeat: no-repeat;
                     background-size: 22px;
@@ -365,15 +373,15 @@ body{
 
         .text #chatBar{
 
-            background-color:#666;
+            background-color:#a4a4a4;
             box-sizing: border-box;
-            width: 70%;
+            width: 66%;
             height: 70%;
            /* border: 1px solid white;*/
             border: none;
             position: absolute;
             top: 15%;
-            left: 23%;
+            left: 17.5%;
             background-image: url(images/chat.png);
             background-repeat: no-repeat;
             background-size: 30px;
@@ -385,29 +393,30 @@ body{
 
         }
         .text input[type=text]:focus {
-            border: 2px solid #FF720F;
+            border: 2px solid #FF862C;
         }
          .text button{
 
                     color: white;
-                    background-color:#666;
+                    background-color:#a4a4a4;
                     background-image: url(images/arrow.png);
                     background-repeat: no-repeat;
                     background-size: 30px;
                     background-position: center;
                     position: absolute;
                     height: 70%;
-                    width: 4%;
+                    width: 4.5%;
                     top: 15%;
-                    right: 5%;
+                    left: 83.5%;
                     border:none;
+             padding-right: -2px;
              
     border-left: solid;
-    border-left-width: 1px;
+    border-left-width: 3px;
     border-color: #222327;
                 }
         .text input[type=text]:focus {
-            border: 2px solid #FF720F;
+            border: 2px solid #FF862C;
         }
 
 .chats {
@@ -436,7 +445,7 @@ body{
                 width= 100%;
                 margin: 10;
                 font: Helvetica, Verdana, sans-serif;
-                border-top: 1px solid #666;
+                border-top: 1px solid #a4a4a4;
                 margin: 10;
                 padding-top: 10;
                 padding-bottom: 10;
@@ -476,7 +485,7 @@ body{
     width: 45%;
     height: auto;
     top: 25%;
-    left: 25%;
+    left: 27.5%;
     margin-top: -50px;
     margin-left: -50px;
     z-index: 10;
@@ -513,6 +522,47 @@ body{
     margin-top: 10%;
 }
 
+#newRoomForm{
+    position: absolute;
+    width: 36%;
+    height: 20%;
+    top: 25%;
+    left: 32%;
+    margin-top: -50px;
+    margin-left: -50px;
+    z-index: 10;
+    background-color: #222327;
+    display: table;
+    box-shadow: 8px 8px 7px #383736;
+}
+
+#newRoomForm #newRoomName{
+    background-color: #a4a4a4;
+    color:white;
+    width: 30%;
+    padding: 5px;
+    margin-left: 35%;
+    margin-top: 5%;
+    border: none;
+}
+
+#newRoomForm #submitRoom{
+    background-color: #FF862C;
+    color: white;
+    width: 20%;
+    margin-left: 40%;
+    margin-top: 5%;
+    border: none;
+    margin-bottom: 10%;
+    padding: 3px;
+}
+
+#newRoomForm h3{
+    color: #FF862C;
+    text-align: center;
+    margin-top: 10%;
+}
+
 #login{
     position: absolute;
     width: 50%;
@@ -534,7 +584,7 @@ body{
     margin-top: -50px;
     margin: 20px;
     margin-left: 25%;
-    background-color: #666;
+    background-color: #a4a4a4;
     color: white;
     border: none;
     padding: 7px;

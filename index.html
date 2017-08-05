@@ -28,7 +28,7 @@
                         <form id="accessibility">
                         <fieldset>
                             <legend>Color Scheme</legend>
-                            <input type="radio" name="scheme" id="stylesheetdark" > Dark 
+                            <input type="radio" name="scheme" id="stylesheetdark" checked="checked"> Dark 
                             <input type="radio" name="scheme" id="stylesheetlight" > Black & White 
                             <p>
                             Textsize:
@@ -40,6 +40,7 @@
                     </form>
 
                         <h1>Rooms:</h1>
+                        <input type="button" id="newRoom" value="create new Room">
                       <ul id="chats">
                       </ul>
                         
@@ -124,6 +125,13 @@
                     <input type="button" id="continue">
                     <br>
                     <input type="button" id="back" value="Back to Login">                
+                </form>
+                
+                <form id="newRoomForm">
+                    <h3>Please enter a name for the room you are creating:</h3>
+                    <input type="text" id="newRoomName" placeholder="Roomname">
+                    <p>
+                    <input type="button" value="Create Room" id="submitRoom">
                 </form>
 
 
