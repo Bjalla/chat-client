@@ -662,19 +662,19 @@ function getNewMessages() {
         } else {
           $('#messages').append(createMessage(data[i].user, data[i].message, data[i].timestamp));
         }
-      }
+          $('#messageid').animate({
+        scrollTop: $('#messageid').get(0).scrollHeight}, 1);
+        }
+      
 
       var notificationUser = data[messages.length - 1].user.toString();
       var notificationMessage = data[messages.length - 1].message.toString();
 
       // console.log(notification);
       notify(notificationUser, notificationMessage);
-    }
-  });
-  $(document).ready(function(){
-    $('#messageid').animate({
-      scrollTop: $('#messageid').get(0).scrollHeight}, 1);
-  });
+    
+  }});
+    
 }
 
 function getNewRooms() {
