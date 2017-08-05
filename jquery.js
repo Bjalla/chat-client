@@ -14,36 +14,39 @@ var permission;
 $(document).ready(function() {
 
   function checkCookie() {
-    var cUser = getCookie("username");
-    if (cUser != "") {
-      alert("Welcome back " + cUser);
+    var cdisplayname = getCookie("Displayname");
+    if (cdisplayname != "") {
+        activeUser = cdisplayname;
+       $(document.getElementById("Welcome").innerHTML = "Welcome back " + cdisplayname);
+        $(document.getElementById("continue").value = "Continue as " + cdisplayname);
+        $("#cookie").show();
+        $("#login").hide();
+        $( "div:not(.cookie)").fadeTo( "slow" , 0.5, function() {
+        // Animation complete.
+    });
     } else {
       checkActiveUser();
     }
   }
 
-  function setCookie(cname, cvalue, exdays) {
+  function setCookie(cname, cvalue , exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     var expires = "expires="+d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
 
-  function getCookie(cname) {
-    var name = cname + "=";
+function getCookie(name) {
+    var nameEQ = name + "=";
     var ca = document.cookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
     }
-
-    return "";
-  }
+    return null;
+}
+  
 
 
   checkCookie();
@@ -238,6 +241,38 @@ $(document).ready(function() {
   })
 
 
+    
+ $(function () {
+    $('#back').on('click', function () {
+    $("#cookie").hide();
+      activeUser = 0;
+    $("#login").show();
+    });
+  });
+    
+  $(function () {
+    $('#continue').on('click', function () {
+      {
+    displayname =  getCookie("Displayname");
+    userName =  getCookie("Username");
+    password =  getCookie("Password");
+    getChats();
+          console.log(getCookie("Username"));
+    getUser();
+    if (statusCode === 200) {
+      activeUser = displayname;
+      $( '#login' ).hide();
+        $('#cookie').hide();
+      $( "div").css({opacity: 1});
+      changeActiveRoom();
+        
+    } else {
+      alert('Username or password not correct. Please enter the correct credentials.');
+    }
+  }})
+  })
+ 
+    
   $("#login").hide();
 
   if (activeUser === 0){
@@ -287,8 +322,12 @@ $(document).ready(function() {
       $( '#login' ).hide();
       $( "div").css({opacity: 1});
       changeActiveRoom();
-
-      setCookie("username", displayname, 0.5);
+        
+        console.log(displayname, userName, password);
+    setCookie("Displayname", displayname, 0.5);
+    setCookie("Password", password, 0.5);
+    setCookie("Username", userName, 0.5);
+        
     } else {
       alert('Username or password not correct. Please enter the correct credentials.');
     }

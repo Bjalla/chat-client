@@ -470,6 +470,48 @@ body{
                 color: #FF862C;
             }
 
+#cookie{
+    position: absolute;
+    width: 45%;
+    width: 45%;
+    height: auto;
+    top: 25%;
+    left: 25%;
+    margin-top: -50px;
+    margin-left: -50px;
+    z-index: 10;
+    background-color: #222327;
+    display: table;
+    box-shadow: 8px 8px 7px #383736;
+}
+#innercookie{
+    background-color: aqua;
+}
+#cookie input{
+    margin-top: -50px;
+    margin: 20px;
+    background-color: #FF862C;
+    color: white;
+    border: none;
+    padding: 10px;
+}
+
+#cookie #continue{
+    width: 25%;
+    margin-left: 37.5%;
+}
+
+#cookie #back{
+    width: 18%;
+    margin-left: 41%;
+    margin-bottom: 10%;
+}
+
+#cookie h1{
+    color: #FF862C;
+    text-align: center;
+    margin-top: 10%;
+}
 
 #login{
     position: absolute;
