@@ -3,16 +3,17 @@
   <head>
       <script type="application/javascript" src="javascript.js"></script>
     <link id="pagestyle" href="stylesheetdark.css" rel="stylesheet" type="text/css"/>
-      <script language="javascript" type="text/javascript" src="index.js"></script>
+      <script type="text/javascript" src="index.js"></script>
       <script src="lib-cookies/js.cookie.js"></script>
       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="jquery.js"></script>
       <meta charset="utf-8"/>
-  </head>
-  <title>
+  
+    <title>
             Chat
         </title>
+    </head>
             <body>
                 <div class="profile">
                     <h1>Welcome</h1>
@@ -21,7 +22,7 @@
                 <div class="chat_header">
                     <h1 class="h1" id="chatname">Active chat</h1>
                 <input type="text" id="searchBar">
-                    <input type="button" id="searchrev"></div>
+                    <input type="button" id="searchrev" value=" "></div>
                 
                 <div class="rooms" id="rooms">
                     <div class="chats">
@@ -33,9 +34,9 @@
                             <p>
                             Textsize:
                             <br>                              
-                            <input type='button'id="textSizeminus" value='-' class='textSize' field='textSize'/>
-                            <input type='text' id="textSizeValue" name='textSize' value='1' class='textSize' />
-                            <input type='button' id="textSizeplus" value='+' class='textSize' field='textSize'/>
+                            <input type='button' id="textSizeminus" value='-' class='textSize'/>
+                            
+                            <input type='button' id="textSizeplus" value='+' class='textSize' />
                         </fieldset>
                     </form>
 
@@ -59,28 +60,28 @@
                 </div>
                     <div id="list" style="display:none"> 
                     
-                        <img id="angel_face" class="smileys" src="images/angel_face.png">
-                        <img id="crying_face" class="smileys" src="images/crying_face.png">
-                        <img id="hearteyed_face" class="smileys" src="images/hearteyed_face.png">
-                        <img id="kissing_face" class="smileys" src="images/kissing_face.png">
-                        <img id="mouthless_face" class="smileys" src="images/mouthless_face.png">
-                        <img id="nerd_face" class="smileys" src="images/nerd_face.png">
-                        <img id="happy_face" class="smileys" src="images/happy_face.png">
-                        <img id="smirking_face" class="smileys" src="images/smirking_face.png">
-                        <img id="sleeping_face" class="smileys" src="images/sleeping_face.png">
-                        <img id="unamused_face" class="smileys" src="images/unamused_face.png">
-                        <img id="zippermouthed_face" class="smileys" src="images/zippermouthed_face.png">
-                        <img id="laughing_face" class="smileys" src="images/laughing_face.png">
-                        <img id="sad_face" class="smileys" src="images/sad_face.png">
-                        <img id="shocked_face" class="smileys" src="images/shocked_face.png">
-                        <img id="tongue_face" class="smileys" src="images/tongue_face.png">
-                        <img id="wink_face" class="smileys" src="images/wink_face.png">
+                        <img id="angel_face" class="smileys" src="images/angel_face.png" alt="angel emoji">
+                        <img id="crying_face" class="smileys" src="images/crying_face.png" alt="crying emoji">
+                        <img id="hearteyed_face" class="smileys" src="images/hearteyed_face.png" alt="hearteyed emoji">
+                        <img id="kissing_face" class="smileys" src="images/kissing_face.png" alt="kissing emoji">
+                        <img id="mouthless_face" class="smileys" src="images/mouthless_face.png" alt="emoji without mouth">
+                        <img id="nerd_face" class="smileys" src="images/nerd_face.png" alt="nerd emoji">
+                        <img id="happy_face" class="smileys" src="images/happy_face.png" alt="happy emoji">
+                        <img id="smirking_face" class="smileys" src="images/smirking_face.png" alt="smirking emoji">
+                        <img id="sleeping_face" class="smileys" src="images/sleeping_face.png" alt="sleeping emoji">
+                        <img id="unamused_face" class="smileys" src="images/unamused_face.png" alt="unamused emoji">
+                        <img id="zippermouthed_face" class="smileys" src="images/zippermouthed_face.png" alt="emoji with zipped mouth">
+                        <img id="laughing_face" class="smileys" src="images/laughing_face.png" alt="laughing emoji">
+                        <img id="sad_face" class="smileys" src="images/sad_face.png" alt="sad emoji">
+                        <img id="shocked_face" class="smileys" src="images/shocked_face.png" alt="shocked emoji">
+                        <img id="tongue_face" class="smileys" src="images/tongue_face.png" alt="emoji sticking out tongue">
+                        <img id="wink_face" class="smileys" src="images/wink_face.png" alt="winking emoji">
                         <br>
-                        <img id="alien" class="smileys" src="images/alien_emoji.png">
-                        <img id="unicorn" class="smileys" src="images/unicorn_emoji.png">
-                        <img id="ghost_emoji" class="smileys" src="images/ghost_emoji.png">
-                        <img id="party_emoji" class="smileys" src="images/party_emoji.png">
-                        <img id="heart" class="smileys" src="images/heart_emoji.png">
+                        <img id="alien" class="smileys" src="images/alien_emoji.png" alt="alien emoji">
+                        <img id="unicorn" class="smileys" src="images/unicorn_emoji.png" alt="unicorn emoji">
+                        <img id="ghost_emoji" class="smileys" src="images/ghost_emoji.png" alt="ghost emoji">
+                        <img id="party_emoji" class="smileys" src="images/party_emoji.png" alt="party emoji">
+                        <img id="heart" class="smileys" src="images/heart_emoji.png" alt="heart emoji">
                         
                          
                     </div>
@@ -88,7 +89,7 @@
                     
                    
                     
-                    <input type="button" id="smileypicker">
+                    <input type="button" id="smileypicker" value=" ">
                     
                     <input list="suggestions" id="chatBar" type="text" name="lname">
                     <datalist id="suggestions">
@@ -105,7 +106,7 @@
                       <option value="O:)">
                       <option value=":alien:">
                     </datalist>
-                    <button id="button"></button>
+                    <button id="sendButton"></button>
                 </div>
                 </div>
 
@@ -121,13 +122,14 @@
                 </form>
                 
               <form id="cookie" class="cookie">
-                  <h1 id="Welcome"></h1>
-                    <input type="button" id="continue">
+                  <h1 id="Welcome"> </h1>
+                    <input type="button" id="continue" value=" ">
                     <br>
                     <input type="button" id="back" value="Back to Login">                
                 </form>
                 
                 <form id="newRoomForm">
+                    <input type="button" value=" " id="closenewRoom">
                     <h3>Please enter a name for the room you are creating:</h3>
                     <input type="text" id="newRoomName" placeholder="Roomname">
                     <p>

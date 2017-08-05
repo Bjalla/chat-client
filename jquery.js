@@ -1,3 +1,4 @@
+
 /*global $*/
 
 var activeChat = '';
@@ -64,7 +65,6 @@ function getCookie(name) {
 
   $("#smileypicker").on('click', function() {
     var x = document.getElementById("list");
-    // console.log(x.style.display);
     if (x.style.display === 'block') {
       x.style.setProperty("display", "none", "important");
     } else {
@@ -226,8 +226,6 @@ function getCookie(name) {
     var sizeuserl = window.getComputedStyle(userl, null).getPropertyValue("font-size");
     userl.style.fontSize =(parseFloat(sizeuserl.replace(/px/,"")))+5.00+"px";
 
-    // console.log(sizemsg);
-    // console.log(sizeuserl);
   });
 
   $("#textSizeminus").click(function() {
@@ -258,7 +256,6 @@ function getCookie(name) {
     userName =  getCookie("Username");
     password =  getCookie("Password");
     getChats();
-          console.log(getCookie("Username"));
     getUser();
     if (statusCode === 200) {
       activeUser = displayname;
@@ -324,7 +321,6 @@ function getCookie(name) {
       $( "div").css({opacity: 1});
       changeActiveRoom();
         
-        console.log(displayname, userName, password);
     setCookie("Displayname", displayname, 0.5);
     setCookie("Password", password, 0.5);
     setCookie("Username", userName, 0.5);
@@ -468,7 +464,6 @@ function getCookie(name) {
   })
 
   function search(){
-    // console.log('going again...');
     var searchval = $('#searchBar').val().toLowerCase();
     $("#messages li").each(function() {
       var s = $(this).text().toLowerCase();
@@ -585,7 +580,6 @@ function toUnicode(inputString) {
       theUnicode = theUnicode + Math.pow((theUnicode.charCodeAt(i)), 2);
     }
   }
-  // console.log(theUnicode);
 
   return theUnicode;
 }
@@ -670,7 +664,7 @@ function getNewMessages() {
       var notificationUser = data[messages.length - 1].user.toString();
       var notificationMessage = data[messages.length - 1].message.toString();
 
-      // console.log(notification);
+      
       notify(notificationUser, notificationMessage);
     
   }});
@@ -730,7 +724,7 @@ function getNewUsers() {
 
        //verarbeitung der response daten
   })).then(function(data) {
-      // console.log("users reloaded");
+    
     if (data.length > user.length) {
       for (var i = user.length; i < data.length; i++) {
         user[i] = data[i];
@@ -849,3 +843,10 @@ function regexcheck(message){
 
   return message;
 }
+    
+$(function () {
+    $("#closenewRoom").on("click", function () {
+        $("#newRoomForm").hide(); 
+        $( "div").css({opacity: 1});
+    });
+  });
